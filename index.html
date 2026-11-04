@@ -81,8 +81,8 @@ body {
 .search-input {
   width: 100%;
   padding: .5rem 1rem;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
+  background: #26221d;
+  border: 1px solid rgba(255,255,255,.4);
   border-radius: 6px;
   color: var(--text);
   font-family: 'Inter', sans-serif;
@@ -91,7 +91,8 @@ body {
   transition: border-color .2s, background .2s;
 }
 
-.search-input::placeholder { color: var(--text3); }
+.search-input:hover { border-color: rgba(255,255,255,.6); }
+.search-input::placeholder { color: #b3aa9e; }
 .search-input:focus { border-color: var(--red); background: var(--surface); }
 
 .header-count {
@@ -763,6 +764,7 @@ body {
   margin: 0 0 .5rem;
 }
 .ayuda-modal a { color: var(--red); text-decoration: underline; }
+.modal-notas a { color: var(--red); text-decoration: underline; word-break: break-all; }
 </style>
 
 <!-- HEADER -->
@@ -2039,6 +2041,9 @@ body {
     · <b>Descargar y ver con un reproductor local:</b> la opción más prolija, sobre todo para películas largas o en TV.</p>
     <p>Importante sobre los subtítulos: en la mayoría de las carpetas no vienen "quemados" en el video, sino como un archivo <b>.srt</b> aparte, al lado del archivo de la película. Viendo la película en streaming directo desde Drive, ese .srt no se carga solo — para tener subtítulos hay que descargar los dos archivos (el video y el .srt, dejándolos con el mismo nombre en la misma carpeta) y abrirlos con VLC, que sí los reconoce automáticamente.</p>
 
+    <h3>Series: descargá de a un episodio</h3>
+    <p>En las series, el botón de Drive lleva a la carpeta de la temporada. Conviene no bajar la carpeta completa: a veces el navegador descarga solo algunos archivos y otros no. Es más seguro entrar a la carpeta y bajar, episodio por episodio, solo los dos archivos del capítulo que vas a ver: el video (normalmente .mkv o .mp4) y su subtítulo (.srt).</p>
+
     <h3>Reproductor recomendado</h3>
     <p><a href="https://www.videolan.org/vlc/" target="_blank" rel="noopener">VLC</a> es gratis y existe para compu, tablet y celular (Android o iOS) — se descarga directo desde ese link. Reproduce prácticamente cualquier formato y códec, soporta subtítulos externos (.srt), y sirve tanto para ver el archivo descargado como para transmitirlo a la TV. Conviene evitar el reproductor "Películas y TV" de Windows: es más limitado con formatos y subtítulos incrustados en archivos .mkv.</p>
 
@@ -2142,28 +2147,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Chungking Express',
-    titulo_original: '重慶森林',
-    director: 'Wong Kar-wai',
-    ano: 1994, decada: '1990s', pais: 'Hong Kong', genero: 'Drama',
-    actores: ['Brigitte Lin', 'Tony Leung', 'Faye Wong'],
-    sinopsis: 'Dos historias de amor frustrado se entrelazan en Hong Kong. Un policía busca su próxima relación en las calles nocturnas; otro se enamora en silencio de la vendedora de una fonda. El tiempo, la memoria y la soledad urbana filmados con energía nerviosa.',
-    poster: 'https://image.tmdb.org/t/p/w500/43I9DcNoCzpyzK8JCkJYpHqHqGG.jpg', imdb: 8.0, metacritic: 77, duracion: 102,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#',
-    notas_alejandro: ''
-  },
-{
-    titulo: 'Parasite',
-    titulo_original: '기생충',
-    director: 'Bong Joon-ho',
-    ano: 2019, decada: '2010s', pais: 'Corea del Sur', genero: 'Thriller',
-    actores: ['Song Kang-ho', 'Lee Sun-kyun', 'Cho Yeo-jeong'],
-    sinopsis: 'La familia Kim, sin trabajo ni dinero, se las ingenia para infiltrarse en la vida de la adinerada familia Park. Un thriller de clases sociales que escala sin aviso hacia lo impensable, con humor negro y una puesta en escena impecable.',
-    poster: 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', imdb: 8.5, metacritic: 96, duracion: 132,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#',
-    notas_alejandro: ''
-  },
-{
     titulo: 'Roma',
     titulo_original: '',
     director: 'Alfonso Cuarón',
@@ -2172,28 +2155,6 @@ const PELICULAS = [
     sinopsis: 'La vida cotidiana de Cleo, empleada doméstica en el barrio Colonia Roma de Ciudad de México, a principios de los setenta. Un retrato íntimo y político filmado en blanco y negro con una textura extraordinaria.',
     poster: 'https://image.tmdb.org/t/p/w500/dtIIyQyALk57ko5bjac7hi01YQ.jpg', imdb: 7.7, metacritic: 96, duracion: 135,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1UXRJlPqvoT40ROU0DWjm64rvzaL5Bbgb',
-    notas_alejandro: ''
-  },
-{
-    titulo: '2001: A Space Odyssey',
-    titulo_original: '',
-    director: 'Stanley Kubrick',
-    ano: 1968, decada: '1960s', pais: 'Reino Unido', genero: 'Ciencia Ficción',
-    actores: ['Keir Dullea', 'Gary Lockwood', 'William Sylvester'],
-    sinopsis: 'Desde el alba de la humanidad hasta el infinito de la galaxia, la odisea de la especie humana y su relación con la tecnología. El monolito negro como pregunta permanente. Una película que sigue sin tener respuesta.',
-    poster: 'https://image.tmdb.org/t/p/w500/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg', imdb: 8.3, metacritic: 84, duracion: 149,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#',
-    notas_alejandro: ''
-  },
-{
-    titulo: 'In the Mood for Love',
-    titulo_original: '花樣年華',
-    director: 'Wong Kar-wai',
-    ano: 2000, decada: '2000s', pais: 'Hong Kong', genero: 'Drama',
-    actores: ['Maggie Cheung', 'Tony Leung Chiu-wai'],
-    sinopsis: 'Dos vecinos en el Hong Kong de 1962 descubren que sus cónyuges tienen una aventura. Su relación, suspendida entre el deseo y la contención, se desarrolla en cámara lenta, con colores saturados y una música que regresa como una obsesión.',
-    poster: 'https://image.tmdb.org/t/p/w500/iYypPT4bhqXfq1b6EnmxvRt6b2Y.jpg', imdb: 8.1, metacritic: 85, duracion: 99,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#',
     notas_alejandro: ''
   },
 {
@@ -2208,156 +2169,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Andrei Rublev',
-    titulo_original: 'Андрей Рублёв',
-    director: 'Andrei Tarkovsky',
-    ano: 1966, decada: '1960s', pais: 'Unión Soviética', genero: 'Drama',
-    actores: ['Anatoliy Solonitsyn', 'Ivan Lapikov', 'Mykola Hrynko', 'Nikolai Sergeyev'],
-    sinopsis: 'Épica biográfica sobre el iconógrafo ruso Andrei Rublev, que vaga por una Rusia medieval brutal y caótica intentando preservar su fe y su arte. Tarkovsky retrata el papel del artista en una sociedad que lo devora.',
-    poster: 'https://image.tmdb.org/t/p/w500/jUihkn16SwPPIjuOyo6orHWUep6.jpg', imdb: 7.9, duracion: 183,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El espejo',
-    titulo_original: 'Zerkalo',
-    director: 'Andrei Tarkovsky',
-    ano: 1975, decada: '1970s', pais: 'Unión Soviética', genero: 'Drama',
-    actores: ['Margarita Terekhova', 'Ignat Daniltsev', 'Larisa Tarkovskaya', 'Alla Demidova'],
-    sinopsis: 'Un hombre moribundo recuerda fragmentos de su infancia, su madre, la guerra y la historia soviética. Tarkovsky entrelaza sueños, memoria y política en uno de los films más personales y poéticos del cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/AttDP5OEsMxtHPPN7Z92p2Ntnmd.jpg', imdb: 7.9, duracion: 107,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Stalker',
-    titulo_original: 'Сталкер',
-    director: 'Andrei Tarkovsky',
-    ano: 1979, decada: '1970s', pais: 'Unión Soviética', genero: 'Ciencia Ficción',
-    actores: ['Aleksandr Kaydanovskiy', 'Anatoliy Solonitsyn', 'Nikolai Grinko', 'Alisa Freyndlikh'],
-    sinopsis: 'Un guía conduce a un escritor y a un científico a través de La Zona, una región prohibida donde supuestamente se cumplen los deseos más profundos. Meditación lenta y sublime sobre la fe, el deseo y el vacío.',
-    poster: 'https://image.tmdb.org/t/p/w500/1qhOyf5C4s9ZdvY8d5JDx9DFMeT.jpg', imdb: 8.1, duracion: 162,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El séptimo sello',
-    titulo_original: 'Det sjunde inseglet',
-    director: 'Ingmar Bergman',
-    ano: 1957, decada: '1950s', pais: 'Suecia', genero: 'Drama',
-    actores: ['Max von Sydow', 'Gunnar Björnstrand', 'Bengt Ekerot', 'Nils Poppe'],
-    sinopsis: 'Un caballero medieval regresa de las Cruzadas y desafía a la Muerte a una partida de ajedrez para ganar tiempo y encontrar el sentido de la existencia. Bergman interroga a Dios con una claridad implacable.',
-    poster: 'https://image.tmdb.org/t/p/w500/wcZ21zrOsy0b52AfAF50XpTiv75.jpg', imdb: 8.1, metacritic: 90, duracion: 96,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Fresas salvajes',
-    titulo_original: 'Smultronstället',
-    director: 'Ingmar Bergman',
-    ano: 1957, decada: '1950s', pais: 'Suecia', genero: 'Drama',
-    actores: ['Victor Sjöström', 'Bibi Andersson', 'Ingrid Thulin', 'Gunnar Björnstrand'],
-    sinopsis: 'El anciano doctor Isak Borg viaja en auto de Estocolmo a Lund para recibir un doctorado honorario. Durante el trayecto, los recuerdos y los sueños lo enfrentan con su vida de frialdad emocional y oportunidades perdidas.',
-    poster: 'https://image.tmdb.org/t/p/w500/iyTD2QnySNMPUPE3IedZQipSWfz.jpg', imdb: 8.1, metacritic: 98, duracion: 91,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Luz de invierno',
-    titulo_original: 'Nattvardsgästerna',
-    director: 'Ingmar Bergman',
-    ano: 1963, decada: '1960s', pais: 'Suecia', genero: 'Drama',
-    actores: ['Gunnar Björnstrand', 'Ingrid Thulin', 'Max von Sydow', 'Gunnel Lindblom'],
-    sinopsis: 'Un pastor protestante vaciado de fe debe enfrentarse a un feligrés aterrorizado por la bomba atómica y a su propia incapacidad de dar consuelo o sentido. La segunda parte de la trilogía del silencio de Bergman.',
-    poster: 'https://image.tmdb.org/t/p/w500/wDxrEssdjFWYwIZLbr06RQNcg1q.jpg', imdb: 7.9, duracion: 80,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La dolce vita',
-    titulo_original: '',
-    director: 'Federico Fellini',
-    ano: 1960, decada: '1960s', pais: 'Italia', genero: 'Drama',
-    actores: ['Marcello Mastroianni', 'Anita Ekberg', 'Anouk Aimée', 'Yvonne Furneaux'],
-    sinopsis: 'El periodista Marcello vaga por la Roma frívola y seductora de los años sesenta entre celebrities, aristócratas y la dolce vita que promete todo y no entrega nada. Fellini dibuja el vacío de una generación con una belleza demoledora.',
-    poster: 'https://image.tmdb.org/t/p/w500/dZ2v0DAX4aCZartCzZdg4ZinSW2.jpg', imdb: 8.0, metacritic: 93, duracion: 174,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Amarcord',
-    titulo_original: '',
-    director: 'Federico Fellini',
-    ano: 1973, decada: '1970s', pais: 'Italia', genero: 'Comedia',
-    actores: ['Pupella Maggio', 'Armando Brancia', 'Magali Noël', 'Ciccio Ingrassia'],
-    sinopsis: 'Evocación de la infancia de Fellini en un pueblo costero de la Italia fascista de los años treinta. Un fresco coral de personajes estrafalarios, memorias sensoriales y nostalgia que no renuncia al espíritu crítico.',
-    poster: 'https://image.tmdb.org/t/p/w500/kS7i093sQpkLTawUEdgf4HVOHSc.jpg', imdb: 7.9, metacritic: 98, duracion: 123,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La aventura',
-    titulo_original: "L'Avventura",
-    director: 'Michelangelo Antonioni',
-    ano: 1960, decada: '1960s', pais: 'Italia', genero: 'Drama',
-    actores: ['Monica Vitti', 'Gabriele Ferzetti', 'Lea Massari', 'Dominique Blanchar'],
-    sinopsis: 'Una joven desaparece durante una excursión en las islas Eolias. Su mejor amiga y su novio la buscan, pero la búsqueda se convierte en el telón de fondo de un romance anómalo cargado de culpa y distancia emocional.',
-    poster: 'https://image.tmdb.org/t/p/w500/7kUXAS8K7Ihw1T1mhARjnLuMVk3.jpg', imdb: 7.5, metacritic: 88, duracion: 144,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La noche',
-    titulo_original: 'La Notte',
-    director: 'Michelangelo Antonioni',
-    ano: 1961, decada: '1960s', pais: 'Italia', genero: 'Drama',
-    actores: ['Marcello Mastroianni', 'Jeanne Moreau', 'Monica Vitti', 'Bernhard Wicki'],
-    sinopsis: 'Un escritor famoso y su esposa atraviesan una noche en Milán que revela el naufragio silencioso de su matrimonio. Antonioni filma la incomunicación con una frialdad arquitectónica que duele sin dejar marca visible.',
-    poster: 'https://image.tmdb.org/t/p/w500/xkd7wPJSIC76scBRHCFZ85uOH5d.jpg', imdb: 7.9, duracion: 122,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Los cuatrocientos golpes',
-    titulo_original: 'Les Quatre Cents Coups',
-    director: 'François Truffaut',
-    ano: 1959, decada: '1950s', pais: 'Francia', genero: 'Drama',
-    actores: ['Jean-Pierre Léaud', 'Claire Maurier', 'Albert Rémy', 'Georges Flamant'],
-    sinopsis: 'Antoine Doinel, un niño parisino incomprendido por sus padres y la escuela, deambula hacia la delincuencia menor. La película inaugural de la Nouvelle Vague y el más íntimo de los retratos de la infancia incomprendida.',
-    poster: 'https://image.tmdb.org/t/p/w500/12PuU23kkDLvTd0nb8hMlE3oShB.jpg', imdb: 8.0, metacritic: 98, duracion: 99,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Jules y Jim',
-    titulo_original: 'Jules et Jim',
-    director: 'François Truffaut',
-    ano: 1962, decada: '1960s', pais: 'Francia', genero: 'Drama',
-    actores: ['Jeanne Moreau', 'Oskar Werner', 'Henri Serre', 'Marie Dubois'],
-    sinopsis: 'Dos amigos inseparables —uno austríaco, uno francés— se enamoran de la misma mujer libre e indomable, Catherine. Un triángulo que abarca décadas, guerras y el agotamiento de todas las formas posibles de amar.',
-    poster: 'https://image.tmdb.org/t/p/w500/kuFjZlcZhQFDtIjuI3GQJjsQG03.jpg', imdb: 7.5, metacritic: 98, duracion: 106,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Sin aliento',
-    titulo_original: 'À bout de souffle',
-    director: 'Jean-Luc Godard',
-    ano: 1960, decada: '1960s', pais: 'Francia', genero: 'Thriller',
-    actores: ['Jean-Paul Belmondo', 'Jean Seberg', 'Daniel Boulanger', 'Henri-Jacques Huet'],
-    sinopsis: 'Un ladrón de autos parisino huye de la policía mientras intenta convencer a su novia americana de que lo acompañe a Italia. La película que inventó el cine moderno: jump cuts, referencias, improvisación y libertad absoluta.',
-    poster: 'https://image.tmdb.org/t/p/w500/9Wx0Wdn2EOqeCZU4SP6tlS3LOml.jpg', imdb: 7.5, metacritic: 97, duracion: 90,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Viridiana',
-    titulo_original: '',
-    director: 'Luis Buñuel',
-    ano: 1961, decada: '1960s', pais: 'España', genero: 'Drama',
-    actores: ['Silvia Pinal', 'Francisco Rabal', 'Fernando Rey', 'José Calvo'],
-    sinopsis: 'Una novicia a punto de tomar los hábitos visita a su tío antes de profesar. Lo que empieza como devoción termina en un retablo blasfemo y feroz sobre la caridad, la hipocresía religiosa y la imposibilidad de la inocencia.',
-    poster: 'https://image.tmdb.org/t/p/w500/mYPuSx5JwL8AdTwS1iQW4Un1cYP.jpg', imdb: 7.7, duracion: 90,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El ángel exterminador',
-    titulo_original: 'El ángel exterminador',
-    director: 'Luis Buñuel',
-    ano: 1962, decada: '1960s', pais: 'México', genero: 'Drama',
-    actores: ['Silvia Pinal', 'Jacqueline Andere', 'Claudio Brook', 'Enrique Rambal'],
-    sinopsis: 'Un grupo de burgueses que cenan juntos descubre que no puede abandonar el salón. Sin explicación racional, permanecen encerrados días. La crítica más cruel de Buñuel a la clase alta y a las convenciones sociales.',
-    poster: 'https://image.tmdb.org/t/p/w500/qqZXHvBFxUpo8Pfbyvgh4SYMiWm.jpg', imdb: 7.9, duracion: 93,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'Toro salvaje',
     titulo_original: 'Raging Bull',
     director: 'Martin Scorsese',
@@ -2366,76 +2177,6 @@ const PELICULAS = [
     sinopsis: 'La vida del boxeador Jake LaMotta, desde su ascenso al campeonato mundial hasta su caída, filmada en un blanco y negro rugoso que convierte cada pelea y cada escena doméstica en una forma de violencia equivalente.',
     poster: 'https://image.tmdb.org/t/p/w500/1WV7WlTS8LI1L5NkCgjWT9GSW3O.jpg', imdb: 7.9, metacritic: 89, duracion: 129,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/11F778BK0niPSYSHtq74bo3RlrggakBWz', notas_alejandro: ''
-  },
-{
-    titulo: 'Taxi Driver',
-    titulo_original: '',
-    director: 'Martin Scorsese',
-    ano: 1976, decada: '1970s', pais: 'EE.UU.', genero: 'Crimen',
-    actores: ['Robert De Niro', 'Jodie Foster', 'Cybill Shepherd', 'Harvey Keitel'],
-    sinopsis: 'Travis Bickle, un veterano de Vietnam con insomnio crónico, conduce un taxi por las noches en Nueva York y va desconectándose de la realidad hasta que decide tomar acción violenta para "limpiar" la ciudad.',
-    poster: 'https://image.tmdb.org/t/p/w500/ekstpH614fwDX8DUln1a2Opz0N8.jpg', imdb: 8.1, metacritic: 94, duracion: 114,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Buenos muchachos',
-    titulo_original: 'GoodFellas',
-    director: 'Martin Scorsese',
-    ano: 1990, decada: '1990s', pais: 'EE.UU.', genero: 'Crimen',
-    actores: ['Ray Liotta', 'Robert De Niro', 'Joe Pesci', 'Lorraine Bracco'],
-    sinopsis: 'Henry Hill narra su vida como miembro de la mafia italoamericana en Nueva York durante tres décadas. Scorsese construye el mejor retrato cinematográfico del crimen organizado: seductor, glamoroso y ultimadamente devastador.',
-    poster: 'https://image.tmdb.org/t/p/w500/9OkCLM73MIU2CrKZbqiT8Ln1wY2.jpg', imdb: 8.5, metacritic: 90, duracion: 145,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El padrino',
-    titulo_original: 'The Godfather',
-    director: 'Francis Ford Coppola',
-    ano: 1972, decada: '1970s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Marlon Brando', 'Al Pacino', 'James Caan', 'Robert Duvall'],
-    sinopsis: 'La saga de los Corleone, una familia de la mafia siciliana en Nueva York. Cuando el patriarca Vito es atacado, su hijo Michael, que quería mantenerse fuera del negocio, se ve absorbido por el poder. Opera épica y análisis del poder familiar.',
-    poster: 'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg', imdb: 8.7, metacritic: 100, duracion: 175,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El padrino. Parte II',
-    titulo_original: 'The Godfather Part II',
-    director: 'Francis Ford Coppola',
-    ano: 1974, decada: '1970s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Al Pacino', 'Robert De Niro', 'Robert Duvall', 'Diane Keaton'],
-    sinopsis: 'En paralelo: el ascenso del joven Vito Corleone desde Sicilia hasta Nueva York, y la consolidación fría e implacable del poder de Michael, que destruye todo lo que toca, incluyendo su propia familia.',
-    poster: 'https://image.tmdb.org/t/p/w500/sSuQTCZwqKrNBNIsksO9IAUoWP9.jpg', imdb: 8.6, metacritic: 90, duracion: 202,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Apocalypse Now',
-    titulo_original: '',
-    director: 'Francis Ford Coppola',
-    ano: 1979, decada: '1970s', pais: 'EE.UU.', genero: 'Bélico',
-    actores: ['Martin Sheen', 'Marlon Brando', 'Robert Duvall', 'Frederic Forrest'],
-    sinopsis: 'El capitán Willard recibe la misión de remontar el río para ejecutar al coronel Kurtz, un militar que ha enlouquecido y reina como un dios en la selva camboyana. Viaje al corazón de las tinieblas en clave de Vietnam.',
-    poster: 'https://image.tmdb.org/t/p/w500/gQB8Y5RCMkv2zwzFHbUJX3kAhvA.jpg', imdb: 8.3, metacritic: 94, duracion: 147,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'No hay país para los viejos',
-    titulo_original: 'No Country for Old Men',
-    director: 'Joel & Ethan Coen',
-    ano: 2007, decada: '2000s', pais: 'EE.UU.', genero: 'Thriller',
-    actores: ['Javier Bardem', 'Josh Brolin', 'Tommy Lee Jones', 'Woody Harrelson'],
-    sinopsis: 'Un cazador encuentra una valija con dos millones de dólares en el desierto de Texas. Un sicario implacable lo persigue. Un sheriff viejo ve el mundo cambiar más allá de lo que puede comprender. Los Coen en estado de gracia absoluto.',
-    poster: 'https://image.tmdb.org/t/p/w500/6d5XOczc226jECq0LIX0siKtgHR.jpg', imdb: 8.0, metacritic: 91, duracion: 122,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El silencio de los inocentes',
-    titulo_original: 'The Silence of the Lambs',
-    director: 'Jonathan Demme',
-    ano: 1991, decada: '1990s', pais: 'EE.UU.', genero: 'Thriller',
-    actores: ['Jodie Foster', 'Anthony Hopkins', 'Scott Glenn', 'Ted Levine'],
-    sinopsis: 'La agente del FBI Clarice Starling debe consultar al asesino serial y caníbal Hannibal Lecter para atrapar a otro asesino. Tensión de cámara única, actuaciones monumentales y un duelo psicológico que no cede.',
-    poster: 'https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg', imdb: 8.3, metacritic: 85, duracion: 119,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1oiMkaexi86h_CQup4ot3Qniz0kO-5v5U', notas_alejandro: ''
   },
 {
     titulo: 'Chinatown',
@@ -2448,136 +2189,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1IATbVadwcPuaD6nu5w52H3fgXUIbkV6k', notas_alejandro: ''
   },
 {
-    titulo: 'Nashville',
-    titulo_original: '',
-    director: 'Robert Altman',
-    ano: 1975, decada: '1970s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Lily Tomlin', 'Keith Carradine', 'Ned Beatty', 'Karen Black'],
-    sinopsis: 'Veinticuatro personajes convergen en Nashville durante cinco días alrededor de un festival de música country y una campaña política. Altman dibuja el mosaico más rico y desencantado del sueño americano.',
-    poster: 'https://image.tmdb.org/t/p/w500/twl4ovyjb8muFKvZmcCDzPR0hy1.jpg', imdb: 7.3, duracion: 160,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Short Cuts',
-    titulo_original: '',
-    director: 'Robert Altman',
-    ano: 1993, decada: '1990s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Andie MacDowell', 'Jack Lemmon', 'Tim Robbins', 'Julianne Moore'],
-    sinopsis: 'Veintidós personajes de Los Ángeles cuyas vidas se entrelazan en una serie de historias breves basadas en cuentos de Raymond Carver. Altman captura la soledad, la violencia latente y la comicidad de la vida cotidiana americana.',
-    poster: 'https://image.tmdb.org/t/p/w500/mbNTvbtWfV4soyErimDTdX67OAr.jpg', imdb: 7.2, duracion: 188,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Drive My Car',
-    titulo_original: 'ドライブ・マイ・カー',
-    director: 'Ryusuke Hamaguchi',
-    ano: 2021, decada: '2020s', pais: 'Japón', genero: 'Drama',
-    actores: ['Hidetoshi Nishijima', 'Toko Miura', 'Masaki Okada', 'Reika Kirishima'],
-    sinopsis: 'Un director de teatro ensaya Tío Vania con actores que hablan idiomas distintos, conducido cada día por una joven callada. El duelo, la culpa y lo que no se puede decir se van revelando a través del lenguaje y del silencio.',
-    poster: 'https://image.tmdb.org/t/p/w500/znXps7wPyYq8UDCfeyO2vfEIeRS.jpg', imdb: 7.4, metacritic: 91, duracion: 179,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Burning',
-    titulo_original: '버닝',
-    director: 'Lee Chang-dong',
-    ano: 2018, decada: '2010s', pais: 'Corea del Sur', genero: 'Misterio',
-    actores: ['Yoo Ah-in', 'Steven Yeun', 'Jeon Jong-seo', 'Kim Soo-kyung'],
-    sinopsis: 'Un joven escritor reencuentra a una amiga de infancia que regresa de África con un misterioso compañero rico. Una desaparición y un posible crimen se desarrollan en una atmósfera de ambigüedad perfectamente sostenida. Basada en Murakami.',
-    poster: 'https://image.tmdb.org/t/p/w500/kXiF80o74fE9gf3Utf9moAI7ar0.jpg', imdb: 7.4, metacritic: 91, duracion: 148,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Memories of Murder',
-    titulo_original: '살인의 추억',
-    director: 'Bong Joon-ho',
-    ano: 2003, decada: '2000s', pais: 'Corea del Sur', genero: 'Crimen',
-    actores: ['Song Kang-ho', 'Kim Sang-kyung', 'Kim Roi-ha', 'Song Jae-ho'],
-    sinopsis: 'Dos detectives con métodos opuestos investigan los primeros asesinatos seriales de la historia de Corea del Sur en una provincia rural en 1986. Bong Joon-ho mezcla comedia, tensión y una melancolía que no tiene resolución.',
-    poster: 'https://image.tmdb.org/t/p/w500/jcgUjx1QcupGzjntTVlnQ15lHqy.jpg', imdb: 8.1, metacritic: 88, duracion: 131,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Un asunto de familia',
-    titulo_original: '万引き家族',
-    director: 'Hirokazu Kore-eda',
-    ano: 2018, decada: '2010s', pais: 'Japón', genero: 'Drama',
-    actores: ['Lily Franky', 'Sakura Ando', 'Mayu Matsuoka', 'Kairi Jo'],
-    sinopsis: 'Una familia marginal de Tokio que sobrevive robando en tiendas incorpora a una niña que parece abandonada. Una reflexión tierna y devastadora sobre qué constituye una familia y quién tiene derecho a pertenecer a una.',
-    poster: 'https://image.tmdb.org/t/p/w500/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg', imdb: 7.8, metacritic: 95, duracion: 120,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El viaje de Chihiro',
-    titulo_original: '千と千尋の神隠し',
-    director: 'Hayao Miyazaki',
-    ano: 2001, decada: '2000s', pais: 'Japón', genero: 'Animación',
-    actores: ['Rumi Hiiragi', 'Miyu Irino', 'Mari Natsuki', 'Takashi Naito'],
-    sinopsis: 'La niña Chihiro queda atrapada en un mundo de espíritus cuando sus padres son convertidos en cerdos. Debe trabajar en una casa de baños mágica para rescatarlos. La obra maestra de Miyazaki y del cine de animación mundial.',
-    poster: 'https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg', imdb: 8.5, metacritic: 96, duracion: 125,
-    tipo: 'pelicula', formato: 'animacion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La princesa Mononoke',
-    titulo_original: 'もののけ姫',
-    director: 'Hayao Miyazaki',
-    ano: 1997, decada: '1990s', pais: 'Japón', genero: 'Animación',
-    actores: ['Yoji Matsuda', 'Yuriko Ishida', 'Yuko Tanaka', 'Kaoru Kobayashi'],
-    sinopsis: 'El príncipe Ashitaka viaja al oeste para encontrar la cura de una maldición y se halla en medio de la guerra entre los dioses del bosque y los humanos que destruyen la naturaleza. Épica ecológica de una complejidad moral extraordinaria.',
-    poster: 'https://image.tmdb.org/t/p/w500/cMYCDADoLKLbB83g4WnJegaZimC.jpg', imdb: 8.3, metacritic: 76, duracion: 134,
-    tipo: 'pelicula', formato: 'animacion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Mi vecino Totoro',
-    titulo_original: 'となりのトトロ',
-    director: 'Hayao Miyazaki',
-    ano: 1988, decada: '1980s', pais: 'Japón', genero: 'Animación',
-    actores: ['Noriko Hidaka', 'Chika Sakamoto', 'Hitoshi Takagi', 'Shigesato Itoi'],
-    sinopsis: 'Dos hermanas se mudan al campo con su padre y descubren a Totoro, un espíritu gigante del bosque. Una de las películas más queridas de la historia del cine: alegre, melancólica y profundamente tierna.',
-    poster: 'https://image.tmdb.org/t/p/w500/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg', imdb: 8.1, metacritic: 86, duracion: 86,
-    tipo: 'pelicula', formato: 'animacion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El samurái',
-    titulo_original: 'Le Samouraï',
-    director: 'Jean-Pierre Melville',
-    ano: 1967, decada: '1960s', pais: 'Francia', genero: 'Thriller',
-    actores: ['Alain Delon', 'François Périer', 'Nathalie Delon', 'Cathy Rosier'],
-    sinopsis: 'Jeff Costello, un asesino a sueldo metódico y solitario, es visto por una testigo después de un crimen y queda atrapado entre la policía y sus empleadores. El más elegante y silencioso de los thrillers europeos.',
-    poster: 'https://image.tmdb.org/t/p/w500/5Fa6o5nfUPEatQ9b3OwEvdEdR7T.jpg', imdb: 7.8, metacritic: 86, duracion: 105,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Caché',
-    titulo_original: '',
-    director: 'Michael Haneke',
-    ano: 2005, decada: '2000s', pais: 'Francia', genero: 'Thriller',
-    actores: ['Daniel Auteuil', 'Juliette Binoche', 'Annie Girardot', 'Bernard Le Coq'],
-    sinopsis: 'Un presentador de televisión parisino comienza a recibir grabaciones anónimas de su propia casa. La vigilancia se convierte en un espejo de culpa colonial y de las verdades que una familia —y una nación— prefiere no ver.',
-    poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', imdb: 7.0, metacritic: 90, duracion: 118,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Amour',
-    titulo_original: '',
-    director: 'Michael Haneke',
-    ano: 2012, decada: '2010s', pais: 'Francia', genero: 'Drama',
-    actores: ['Jean-Louis Trintignant', 'Emmanuelle Riva', 'Isabelle Huppert', 'Alexandre Tharaud'],
-    sinopsis: 'Georges y Anne son un matrimonio de octogenarios músicos. Cuando ella sufre un accidente cerebrovascular, él la cuida en su departamento parisino hasta el límite. El amor más radical filmado con una honestidad que no concede ningún alivio.',
-    poster: 'https://image.tmdb.org/t/p/w500/19hyCudualHxCD0GrEngqsi0wBF.jpg', imdb: 7.8, metacritic: 94, duracion: 127,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Funny Games',
-    titulo_original: '',
-    director: 'Michael Haneke',
-    ano: 1997, decada: '1990s', pais: 'Austria', genero: 'Terror',
-    actores: ['Susanne Lothar', 'Ulrich Mühe', 'Arno Frisch', 'Frank Giering'],
-    sinopsis: 'Dos jóvenes educados toman como rehenes a una familia de vacaciones en su casa de campo. Haneke destruye sistemáticamente las convenciones del thriller de terror y acusa al espectador de su complicidad con la violencia en el cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/48uCNgdyYIoN4ayWjTpLaqSDcWI.jpg', imdb: 7.3, metacritic: 58, duracion: 109,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'Boyhood',
     titulo_original: '',
     director: 'Richard Linklater',
@@ -2586,96 +2197,6 @@ const PELICULAS = [
     sinopsis: 'Filmada durante doce años con los mismos actores, sigue a Mason desde los seis hasta los dieciocho años. No hay drama artificial: solo el tiempo pasando, que es el drama más verdadero que existe.',
     poster: 'https://image.tmdb.org/t/p/w500/2BvtvDUyxiMJ4dmKfiQf4qdOHQN.jpg', imdb: 7.5, metacritic: 100, duracion: 165,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1r6v29teXNX0RO1mFFxME6uGIgyNCb76j', notas_alejandro: ''
-  },
-{
-    titulo: 'Historia de un matrimonio',
-    titulo_original: 'Marriage Story',
-    director: 'Noah Baumbach',
-    ano: 2019, decada: '2010s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Adam Driver', 'Scarlett Johansson', 'Laura Dern', 'Alan Alda'],
-    sinopsis: 'Un director de teatro y una actriz transitan el divorcio intentando que sea amistoso, mientras el proceso legal los convierte en adversarios. Baumbach filma el amor que sobrevive al amor con una precisión que duele.',
-    poster: 'https://image.tmdb.org/t/p/w500/2JRyCKaRKyJAVpsIHeLvPw5nHmw.jpg', imdb: 7.7, metacritic: 93, duracion: 137,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Lady Bird',
-    titulo_original: '',
-    director: 'Greta Gerwig',
-    ano: 2017, decada: '2010s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Saoirse Ronan', 'Laurie Metcalf', 'Tracy Letts', 'Lucas Hedges'],
-    sinopsis: 'Una adolescente de Sacramento que se puso a sí misma el nombre de Lady Bird navega su último año de preparatoria entre la tensión con su madre, los primeros romances y el deseo urgente de irse lejos. Debut memorable de Gerwig.',
-    poster: 'https://image.tmdb.org/t/p/w500/gl66K7zRdtNYGrxyS2YDUP5ASZd.jpg', imdb: 7.2, metacritic: 99, duracion: 94,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Cold War',
-    titulo_original: 'Zimna Wojna',
-    director: 'Paweł Pawlikowski',
-    ano: 2018, decada: '2010s', pais: 'Polonia', genero: 'Romance',
-    actores: ['Joanna Kulig', 'Tomasz Kot', 'Borys Szyc', 'Agata Kulesza'],
-    sinopsis: 'Dos músicos polacos que se aman con desmesura se separan, reencuentran y vuelven a separar a lo largo de quince años y en cuatro países. Un romance imposible filmado en blanco y negro con la intensidad del jazz que lo acompaña.',
-    poster: 'https://image.tmdb.org/t/p/w500/6rbS8oPIgUMhQgIX8oGVTtlNgLR.jpg', imdb: 7.4, metacritic: 90, duracion: 88,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Ida',
-    titulo_original: '',
-    director: 'Paweł Pawlikowski',
-    ano: 2013, decada: '2010s', pais: 'Polonia', genero: 'Drama',
-    actores: ['Agata Trzebuchowska', 'Agata Kulesza', 'Dawid Ogrodnik', 'Jerzy Trela'],
-    sinopsis: 'Una joven novicia polaca descubre antes de tomar los hábitos que es judía y que sus padres murieron durante la ocupación nazi. Viaje al pasado filmado en blanco y negro y formato 4:3 con una austeridad absoluta y conmovedora.',
-    poster: 'https://image.tmdb.org/t/p/w500/oFrwnliM6TtAyWo6nIP8YpJbIvi.jpg', imdb: 7.2, metacritic: 96, duracion: 82,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El hijo de Saúl',
-    titulo_original: 'Saul fia',
-    director: 'László Nemes',
-    ano: 2015, decada: '2010s', pais: 'Hungría', genero: 'Bélico',
-    actores: ['Géza Röhrig', 'Levente Molnár', 'Urs Rechn', 'Todd Charmont'],
-    sinopsis: 'Saul, un Sonderkommando judío en Auschwitz, cree reconocer en el cuerpo de un niño a su hijo y se obsesiona con darle una sepultura digna. La cámara nunca se separa de su rostro. Una experiencia cinematográfica ineludible.',
-    poster: 'https://image.tmdb.org/t/p/w500/9ZcX6NjCJam5uwkooXffhHI29Lj.jpg', imdb: 7.1, metacritic: 94, duracion: 107,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El laberinto del fauno',
-    titulo_original: 'El laberinto del fauno',
-    director: 'Guillermo del Toro',
-    ano: 2006, decada: '2000s', pais: 'España', genero: 'Drama',
-    actores: ['Ivana Baquero', 'Sergi López', 'Maribel Verdú', 'Doug Jones'],
-    sinopsis: 'En la España de posguerra, la niña Ofelia escapa a un mundo de fantasía subterráneo donde debe superar tres pruebas para demostrar que es una princesa. Del Toro entreteje el cuento de hadas con el horror político de la dictadura franquista.',
-    poster: 'https://image.tmdb.org/t/p/w500/z7xXihu5wHuSMWymq5VAulPVuvg.jpg', imdb: 7.8, metacritic: 98, duracion: 118,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Y tu mamá también',
-    titulo_original: '',
-    director: 'Alfonso Cuarón',
-    ano: 2001, decada: '2000s', pais: 'México', genero: 'Drama',
-    actores: ['Gael García Bernal', 'Diego Luna', 'Maribel Verdú', 'Daniel Giménez Cacho'],
-    sinopsis: 'Dos adolescentes mexicanos y una mujer española algo mayor se van de viaje a una playa secreta. El road movie como pretexto para retratar las clases sociales, la amistad masculina, el deseo y el México que la cámara ve al costado del camino.',
-    poster: 'https://image.tmdb.org/t/p/w500/aj3rqjab8jfc2fWmcS3H3c5qbur.jpg', imdb: 7.4, metacritic: 91, duracion: 106,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El resplandor',
-    titulo_original: 'The Shining',
-    director: 'Stanley Kubrick',
-    ano: 1980, decada: '1980s', pais: 'EE.UU.', genero: 'Terror',
-    actores: ['Jack Nicholson', 'Shelley Duvall', 'Danny Lloyd', 'Scatman Crothers'],
-    sinopsis: 'Jack Torrance lleva a su familia al hotel Overlook para cuidarlo durante el invierno y poder escribir. El aislamiento y las presencias del hotel lo van corroyendo. La película de terror más perfectamente construida de la historia del cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/uAR0AWqhQL1hQa69UDEbb2rE5Wx.jpg', imdb: 8.2, metacritic: 66, duracion: 144,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La naranja mecánica',
-    titulo_original: 'A Clockwork Orange',
-    director: 'Stanley Kubrick',
-    ano: 1971, decada: '1970s', pais: 'Reino Unido', genero: 'Ciencia Ficción',
-    actores: ['Malcolm McDowell', 'Patrick Magee', 'Michael Bates', 'Carl Duering'],
-    sinopsis: 'Alex DeLarge, líder de una banda de inadaptados en una Inglaterra futurista, es capturado y sometido a una terapia de aversión al crimen. Kubrick interroga el libre albedrío, la violencia y el control del Estado con una frialdad de bisturí.',
-    poster: 'https://image.tmdb.org/t/p/w500/4sHeTAp65WrSSuc05nRBKddhBxO.jpg', imdb: 8.2, metacritic: 77, duracion: 137,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
   },
 {
     titulo: 'Midnight Cowboy',
@@ -2688,46 +2209,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1eTMBKz3ywI3UO5DEefw3NRCXCS0wg06f', notas_alejandro: ''
   },
 {
-    titulo: 'Senderos de gloria',
-    titulo_original: 'Paths of Glory',
-    director: 'Stanley Kubrick',
-    ano: 1957, decada: '1950s', pais: 'EE.UU.', genero: 'Bélico',
-    actores: ['Kirk Douglas', 'Ralph Meeker', 'Adolphe Menjou', 'George Macready'],
-    sinopsis: 'Un coronel francés defiende a tres soldados acusados de cobardía durante la Primera Guerra Mundial, cuando en realidad fueron ejecutores de las órdenes suicidas de sus propios generales. Kubrick contra la guerra y contra el poder con una claridad brutal.',
-    poster: 'https://image.tmdb.org/t/p/w500/hGg1UCQSHlXfv2HI9bDHT2OQBam.jpg', imdb: 8.3, metacritic: 90, duracion: 88,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El árbol de la vida',
-    titulo_original: 'The Tree of Life',
-    director: 'Terrence Malick',
-    ano: 2011, decada: '2010s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Brad Pitt', 'Jessica Chastain', 'Hunter McCracken', 'Sean Penn'],
-    sinopsis: 'El recuerdo de una infancia en Texas en los años cincuenta se entrelaza con el origen del universo. Una meditación visual y espiritual sobre la gracia y la naturaleza, el amor paterno y la pérdida, filmada como una oración laica.',
-    poster: 'https://image.tmdb.org/t/p/w500/l8cwuB5WJSoj4uMAsnzuHBOMaSJ.jpg', imdb: 6.7, metacritic: 85, duracion: 139,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Copia certificada',
-    titulo_original: 'Copie conforme',
-    director: 'Abbas Kiarostami',
-    ano: 2010, decada: '2010s', pais: 'Francia', genero: 'Drama',
-    actores: ['Juliette Binoche', 'William Shimell', 'Jean-Claude Carrière', 'Agathe Natanson'],
-    sinopsis: 'Un escritor inglés y una galerista francesa se conocen en la Toscana y recorren juntos el paisaje durante un día. El film oscila entre lo real y lo representado hasta hacer incierta la diferencia. Kiarostami en estado de gracia.',
-    poster: 'https://image.tmdb.org/t/p/w500/soBvtCR33Gv1j6gXwXOIc3JTlNc.jpg', imdb: 7.0, duracion: 106,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Old Boy',
-    titulo_original: '올드보이',
-    director: 'Park Chan-wook',
-    ano: 2003, decada: '2000s', pais: 'Corea del Sur', genero: 'Thriller',
-    actores: ['Choi Min-sik', 'Yu Ji-tae', 'Kang Hye-jung', 'Kim Byeong-ok'],
-    sinopsis: 'Un hombre es encerrado sin explicación durante quince años en un cuarto de hotel. Al ser liberado, tiene cinco días para descubrir quién y por qué. Park Chan-wook construye un thriller de venganza donde cada respuesta trae una revelación más perturbadora.',
-    poster: 'https://image.tmdb.org/t/p/w500/pWDtjs568ZfOTMbURQBYuT4Qxka.jpg', imdb: 8.2, duracion: 119,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'Jeanne Dielman',
     titulo_original: 'Jeanne Dielman, 23 quai du Commerce, 1080 Bruxelles',
     director: 'Chantal Akerman',
@@ -2736,26 +2217,6 @@ const PELICULAS = [
     sinopsis: 'Tres días en la vida de una viuda belga de clase media que cuida a su hijo y ejerce la prostitución de tarde. Akerman filma las rutinas con una atención radical que convierte lo doméstico en algo definitivo y luego lo rompe.',
     poster: 'https://image.tmdb.org/t/p/w500/fqfSu8Y1YSVFkoCJyiTXI6woYma.jpg', imdb: 7.4, duracion: 202,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1b3wPwdaIrmNedUG9Il88NgSlVbXxEh23', notas_alejandro: ''
-  },
-{
-    titulo: 'El acto de matar',
-    titulo_original: 'The Act of Killing',
-    director: 'Joshua Oppenheimer',
-    ano: 2012, decada: '2010s', pais: 'Dinamarca', genero: 'Documental',
-    actores: ['Anwar Congo', 'Herman Koto', 'Syamsul Arifin', 'Ibrahim Sinik'],
-    sinopsis: 'Los perpetradores del genocidio indonesio de 1965-66 son invitados a recrear sus crímenes en el género cinematográfico que prefieran. El resultado es una de las películas más perturbadoras y originales sobre el mal.',
-    poster: 'https://image.tmdb.org/t/p/w500/sp5B7Tz5ttsgOLnIlCP5uEhtesI.jpg', imdb: 7.7, duracion: 117,
-    tipo: 'pelicula', formato: 'documental', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Leviatán',
-    titulo_original: 'Leviafan',
-    director: 'Andrey Zvyagintsev',
-    ano: 2014, decada: '2010s', pais: 'Rusia', genero: 'Drama',
-    actores: ['Aleksey Serebryakov', 'Elena Lyadova', 'Vladimir Vdovichenkov', 'Roman Madyanov'],
-    sinopsis: 'Un mecánico en un pueblo costero del norte de Rusia lucha contra el alcalde corrupto que quiere expropiar su casa. Zvyagintsev construye una fábula bíblica sobre el poder, la corrupción y la impotencia del individuo ante el Estado.',
-    poster: 'https://image.tmdb.org/t/p/w500/dwmHSBBiu2ow271zrQ33rPKZDSC.jpg', imdb: 7.4, duracion: 141,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
   },
 {
     titulo: 'La conversación',
@@ -2778,246 +2239,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1MuiEhtdutb8d7puF5F_lRg8W89botkdQ', notas_alejandro: ''
   },
 {
-    titulo: 'La hora del lobo',
-    titulo_original: 'Vargtimmen',
-    director: 'Ingmar Bergman',
-    ano: 1968, decada: '1960s', pais: 'Suecia', genero: 'Terror',
-    actores: ['Max von Sydow', 'Liv Ullmann', 'Gertrud Fridh', 'Georg Rydeberg'],
-    sinopsis: 'El pintor Johan Borg y su mujer Alma viven aislados en una isla. Johan, obsesionado por sus demonios interiores, comienza a desintegrarse. Bergman en su incursión más directa al horror psicológico, con una atmósfera de pesadilla única.',
-    poster: 'https://image.tmdb.org/t/p/w500/jSqTnEP1x1OcOglqrInYvGSF1tL.jpg', imdb: 7.4, duracion: 99,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El reportero',
-    titulo_original: 'The Passenger',
-    director: 'Michelangelo Antonioni',
-    ano: 1975, decada: '1970s', pais: 'Italia', genero: 'Drama',
-    actores: ['Jack Nicholson', 'Maria Schneider', 'Jenny Runacre', 'Ian Hendry'],
-    sinopsis: 'Un periodista televisivo hastiado intercambia identidad con un hombre muerto en un hotel africano. Adopta su agenda, sus citas, su vida. Antonioni filma la huida y el vacío existencial con una frialdad extraordinaria; el plano final es uno de los más comentados de la historia del cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/A8jYH43plz70dNmHy82zAHGTqxN.jpg', imdb: 7.2, duracion: 119,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Blow-Up',
-    titulo_original: '',
-    director: 'Michelangelo Antonioni',
-    ano: 1966, decada: '1960s', pais: 'Reino Unido', genero: 'Misterio',
-    actores: ['David Hemmings', 'Vanessa Redgrave', 'Sarah Miles', 'John Castle'],
-    sinopsis: 'Un fotógrafo de moda en el Londres de los sesenta cree haber fotografiado un asesinato en un parque. Al ampliar las imágenes, la evidencia es incierta. Antonioni interroga la representación, la realidad y el deseo con una elegancia sin igual.',
-    poster: 'https://image.tmdb.org/t/p/w500/jVDVpydUw8Z50naUDAG4NbRCrSa.jpg', imdb: 7.3, duracion: 108,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Pierrot el loco',
-    titulo_original: 'Pierrot le Fou',
-    director: 'Jean-Luc Godard',
-    ano: 1965, decada: '1960s', pais: 'Francia', genero: 'Drama',
-    actores: ['Jean-Paul Belmondo', 'Anna Karina', 'Graziella Galvani', 'Aicha Abadir'],
-    sinopsis: 'Ferdinand abandona a su esposa y huye con Marianne, su antigua niñera, hacia el sur de Francia. Godard convierte una road movie en un collage de colores, citas literarias, violencia súbita y amor imposible. Una de las películas más libres de la historia del cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/i124H6iQB4CawrgFW9aZaZs7OBO.jpg', imdb: 7.3, duracion: 110,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Los paraguas de Cherburgo',
-    titulo_original: 'Les Parapluies de Cherbourg',
-    director: 'Jacques Demy',
-    ano: 1964, decada: '1960s', pais: 'Francia', genero: 'Romance',
-    actores: ['Catherine Deneuve', 'Nino Castelnuovo', 'Anne Vernon', 'Mireille Perrey'],
-    sinopsis: 'Geneviève y Guy están enamorados en Cherburgo. Cuando él parte a la guerra de Argelia, la joven queda embarazada y enfrenta una decisión que cambiará sus vidas. Todo el diálogo es cantado; la melancolía y el amor se funden en un musical único.',
-    poster: 'https://image.tmdb.org/t/p/w500/tAgTf64XKK5ir7w5C7dnB53jWWG.jpg', imdb: 7.4, duracion: 88,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Un condenado a muerte se ha escapado',
-    titulo_original: "Un condamné à mort s'est échappé",
-    director: 'Robert Bresson',
-    ano: 1956, decada: '1950s', pais: 'Francia', genero: 'Drama',
-    actores: ['François Leterrier', 'Charles Le Clainche', 'Maurice Beerblock', 'Roland Monod'],
-    sinopsis: 'Fontaine, un miembro de la Resistencia francesa preso por los nazis, planifica su escape de la prisión de Montluc durante meses. Bresson filma la preparación con una concentración absoluta: la fe, la voluntad y los objetos como camino a la libertad.',
-    poster: 'https://image.tmdb.org/t/p/w500/gkoZ8fFib24zhB2DKpjQ09SK9FU.jpg', imdb: 7.9, duracion: 99,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Pickpocket',
-    titulo_original: '',
-    director: 'Robert Bresson',
-    ano: 1959, decada: '1950s', pais: 'Francia', genero: 'Drama',
-    actores: ['Martin LaSalle', 'Marika Green', 'Jean Pélégri', 'Dolly Scal'],
-    sinopsis: 'Michel es un carterista parisino que roba no por necesidad sino como expresión de una filosofía de superioridad. Bresson filma los dedos que hurtan con la misma atención que las manos de un pianista: el pecado, la gracia y la redención en 75 minutos.',
-    poster: 'https://image.tmdb.org/t/p/w500/szulf6uQyZp0QPVOvzavETdVYXI.jpg', imdb: 7.3, duracion: 75,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Al azar Baltasar',
-    titulo_original: 'Au hasard Balthazar',
-    director: 'Robert Bresson',
-    ano: 1966, decada: '1960s', pais: 'Francia', genero: 'Drama',
-    actores: ['Anne Wiazemsky', 'Walter Green', 'François Lafarge', 'Jean-Claude Guilbert'],
-    sinopsis: 'La vida de un burro que pasa de mano en mano por el campo francés, sufriendo la crueldad y la indiferencia humanas. Bresson convierte al animal en un espejo de la gracia: una de las películas más conmovedoras de la historia del cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/lkLO1HDzzaXpTXtAgnGpVqIQkvF.jpg', imdb: 7.5, duracion: 95,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Umberto D.',
-    titulo_original: '',
-    director: 'Vittorio De Sica',
-    ano: 1952, decada: '1950s', pais: 'Italia', genero: 'Drama',
-    actores: ['Carlo Battisti', 'Maria Pia Casilio', 'Lina Gennari', 'Ileana Simova'],
-    sinopsis: 'Umberto Ferrari, un jubilado con pensión mínima, lucha por pagar el alquiler de su cuarto mientras se aferra a su perro como único afecto. De Sica filma la vejez y la pobreza con una ternura que duele. Una de las obras cumbre del neorrealismo.',
-    poster: 'https://image.tmdb.org/t/p/w500/5I7SYsNQmZRZpQ2MAarIQYU9vaX.jpg', imdb: 7.9, duracion: 91,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Ladrón de bicicletas',
-    titulo_original: 'Ladri di biciclette',
-    director: 'Vittorio De Sica',
-    ano: 1948, decada: '1940s', pais: 'Italia', genero: 'Drama',
-    actores: ['Lamberto Maggiorani', 'Enzo Staiola', 'Lianella Carell', 'Gino Saltamerenda'],
-    sinopsis: 'Un obrero en la Roma de posguerra consigue trabajo pegando carteles, que requiere una bicicleta. Cuando se la roban, recorre la ciudad con su hijo buscándola. De Sica construye una epopeya en pequeño sobre la dignidad, la desesperanza y el amor paternal.',
-    poster: 'https://image.tmdb.org/t/p/w500/iPdVqIpmR3bRvOQJPrn4pr2KR3q.jpg', imdb: 8.2, duracion: 88,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La infancia de Iván',
-    titulo_original: 'Ivanovo detstvo',
-    director: 'Andrei Tarkovsky',
-    ano: 1962, decada: '1960s', pais: 'Unión Soviética', genero: 'Bélico',
-    actores: ['Nikolay Burlyayev', 'Valentin Zubkov', 'Yevgeny Zharikov', 'Stepan Krylov'],
-    sinopsis: 'Iván, un niño de doce años huérfano de guerra, actúa como espía soviético en el frente oriental. Tarkovsky alterna la brutalidad de la realidad con sueños poéticos de la infancia perdida. Su primera película, ya con su marca inconfundible.',
-    poster: 'https://image.tmdb.org/t/p/w500/trY9ADhXgSExH3DLlFhV5C8aDtw.jpg', imdb: 7.8, duracion: 95,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Sacrificio',
-    titulo_original: 'Offret',
-    director: 'Andrei Tarkovsky',
-    ano: 1986, decada: '1980s', pais: 'Suecia', genero: 'Drama',
-    actores: ['Erland Josephson', 'Susan Fleetwood', 'Allan Edwall', 'Guðrún Gísladóttir'],
-    sinopsis: 'Alexander celebra su cumpleaños cuando las noticias anuncian una guerra nuclear inminente. En un pacto con Dios, ofrece todo lo que tiene a cambio de la paz. La última película de Tarkovsky, filmada mientras él mismo enfrentaba la muerte.',
-    poster: 'https://image.tmdb.org/t/p/w500/8JMh27z075ZHbFE85XYkdXF2QkK.jpg', imdb: 7.7, duracion: 145,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Nostalgia',
-    titulo_original: 'Nostalghia',
-    director: 'Andrei Tarkovsky',
-    ano: 1983, decada: '1980s', pais: 'Italia', genero: 'Drama',
-    actores: ['Oleg Yankovsky', 'Erland Josephson', 'Domiziana Giordano', 'Patrizia Terreno'],
-    sinopsis: 'El poeta ruso Andrei Gorchakov investiga en Italia la vida de un músico del siglo XVIII. Pero la nostalgia de su tierra lo paraliza. Tarkovsky explora el exilio, la memoria y la imposibilidad de pertenecer plenamente a ningún lugar.',
-    poster: 'https://image.tmdb.org/t/p/w500/fCYSidPXp3LpDa9wlLNv0gZvjyF.jpg', imdb: 7.8, duracion: 125,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El manantial de la doncella',
-    titulo_original: 'Jungfrukällan',
-    director: 'Ingmar Bergman',
-    ano: 1960, decada: '1960s', pais: 'Suecia', genero: 'Drama',
-    actores: ['Max von Sydow', 'Birgitta Valberg', 'Gunnel Lindblom', 'Birgitta Pettersson'],
-    sinopsis: 'En la Suecia medieval, la hija de un noble es violada y asesinada. Su padre toma venganza con sus propias manos. Bergman explora el pecado, la culpa y el milagro divino con una crudeza que todavía impacta. Ganó el Óscar a mejor película extranjera.',
-    poster: 'https://image.tmdb.org/t/p/w500/z70YM3Y4pNYZATMhFMKonngaeMC.jpg', imdb: 7.8, duracion: 89,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Sonata de otoño',
-    titulo_original: 'Höstsonaten',
-    director: 'Ingmar Bergman',
-    ano: 1978, decada: '1970s', pais: 'Suecia', genero: 'Drama',
-    actores: ['Ingrid Bergman', 'Liv Ullmann', 'Lena Nyman', 'Halvar Björk'],
-    sinopsis: 'Una famosa pianista visita a su hija después de años de ausencia. El reencuentro desata un ajuste de cuentas feroz sobre el abandono, el talento y la incapacidad de amar. El único encuentro de los dos Bergman: una colisión monumental.',
-    poster: 'https://image.tmdb.org/t/p/w500/6beNbtCXv3GkzHkxkGYf38ib7v8.jpg', imdb: 8.0, duracion: 99,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Hiroshima mon amour',
-    titulo_original: '',
-    director: 'Alain Resnais',
-    ano: 1959, decada: '1950s', pais: 'Francia', genero: 'Drama',
-    actores: ['Emmanuelle Riva', 'Eiji Okada', 'Stella Dassas', 'Pierre Barbaud'],
-    sinopsis: 'Una actriz francesa filmando en Hiroshima tiene un breve affair con un japonés. En su conversación nocturna, él la lleva a reconstruir su experiencia de amor y pérdida en la Francia ocupada. Resnais entrelaza la memoria personal y la historia colectiva de manera inaugural.',
-    poster: 'https://image.tmdb.org/t/p/w500/zieczjWnvalaxwX5EQASEx0on5f.jpg', imdb: 7.7, duracion: 88,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El año pasado en Marienbad',
-    titulo_original: "L'Année dernière à Marienbad",
-    director: 'Alain Resnais',
-    ano: 1961, decada: '1960s', pais: 'Francia', genero: 'Misterio',
-    actores: ['Delphine Seyrig', 'Giorgio Albertazzi', 'Sacha Pitoëff', 'Françoise Bertin'],
-    sinopsis: 'En un hotel barroco, un hombre intenta convencer a una mujer de que ya se conocieron el año anterior y de que tienen un compromiso pendiente. Ella no recuerda. Resnais y Robbe-Grillet crean el laberinto más seductor e irresolvible de la historia del cine.',
-    poster: 'https://image.tmdb.org/t/p/w500/syIJCqiSkGRJTlyaBtyI5jqPtE7.jpg', imdb: 7.4, duracion: 91,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La batalla de Argel',
-    titulo_original: 'La battaglia di Algeri',
-    director: 'Gillo Pontecorvo',
-    ano: 1966, decada: '1960s', pais: 'Argelia', genero: 'Bélico',
-    actores: ['Brahim Hadjadj', 'Jean Martin', 'Saadi Yacef', 'Samia Kerbash'],
-    sinopsis: 'Reconstrucción de los años más intensos de la guerra de independencia argelina contra la ocupación francesa. Filmada con una objetividad devastadora que no toma partido declarado pero deja ver todo. Un manual de cine político y de contrainsurgencia.',
-    poster: 'https://image.tmdb.org/t/p/w500/2p3AFtOHFvP6OeVMqlnL1zLKOqL.jpg', imdb: 7.9, duracion: 121,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El conformista',
-    titulo_original: 'Il Conformista',
-    director: 'Bernardo Bertolucci',
-    ano: 1970, decada: '1970s', pais: 'Italia', genero: 'Drama',
-    actores: ['Jean-Louis Trintignant', 'Stefania Sandrelli', 'Gastone Moschin', 'Dominique Sanda'],
-    sinopsis: 'Un joven fascista italiano de los años treinta recibe la misión de asesinar a su antiguo profesor, exiliado en París. Bertolucci traza el retrato del conformismo como patología: la obediencia y el miedo como fundamentos del totalitarismo.',
-    poster: 'https://image.tmdb.org/t/p/w500/nLJjFRqIJAK8qz0OKYnpKCblZNK.jpg', imdb: 7.6, duracion: 113,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Ven y mira',
-    titulo_original: 'Idi i smotri',
-    director: 'Elem Klimov',
-    ano: 1985, decada: '1980s', pais: 'Unión Soviética', genero: 'Bélico',
-    actores: ['Aleksei Kravchenko', 'Olga Mironova', 'Liubomiras Laucevicius', 'Vladas Bagdonas'],
-    sinopsis: 'Un adolescente bielorruso se une a la resistencia soviética durante la ocupación nazi. Lo que sigue es un descenso al infierno que envejece al personaje —y al espectador— en tiempo real. La película de guerra más brutal jamás filmada.',
-    poster: 'https://image.tmdb.org/t/p/w500/qNbMsKVzigERgJUbwf8pKyZogpb.jpg', imdb: 8.2, duracion: 142,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'La cinta blanca',
-    titulo_original: 'Das weiße Band',
-    director: 'Michael Haneke',
-    ano: 2009, decada: '2000s', pais: 'Alemania', genero: 'Misterio',
-    actores: ['Christian Friedel', 'Leonie Benesch', 'Ulrich Tukur', 'Fion Mutert'],
-    sinopsis: 'En un pueblo protestante del norte de Alemania, en vísperas de la Primera Guerra Mundial, ocurren actos violentos y crueles cuyo origen permanece inexplicado. Haneke filma los orígenes del autoritarismo con una frialdad clínica que aterra.',
-    poster: 'https://image.tmdb.org/t/p/w500/54dlnGDexrwAFlDb8HWKfmmX4LB.jpg', imdb: 7.5, duracion: 145,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Nader y Simin, una separación',
-    titulo_original: 'Jodaeiye Nader az Simin',
-    director: 'Asghar Farhadi',
-    ano: 2011, decada: '2010s', pais: 'Irán', genero: 'Drama',
-    actores: ['Peyman Moaadi', 'Leila Hatami', 'Shahab Hosseini', 'Sarah Bayat'],
-    sinopsis: 'Un matrimonio iraní se separa cuando la mujer quiere emigrar y el marido no puede dejar a su padre con Alzheimer. El conflicto escala hasta involucrar a una familia de clase baja y al sistema judicial iraní. Farhadi en su cima narrativa.',
-    poster: 'https://image.tmdb.org/t/p/w500/xQadpnoLokxzN3hRpCPbBGpxsiz.jpg', imdb: 7.9, duracion: 123,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'A propósito de Elly',
-    titulo_original: 'Darbareye Elly',
-    director: 'Asghar Farhadi',
-    ano: 2009, decada: '2000s', pais: 'Irán', genero: 'Drama',
-    actores: ['Golshifteh Farahani', 'Shahab Hosseini', 'Peyman Moaadi', 'Merila Zarei'],
-    sinopsis: 'Un grupo de amigos pasa el fin de semana en el Mar Caspio. Cuando Elly, la maestra invitada, desaparece, la alegría vacacional se transforma en un tenso drama de mentiras, responsabilidades y culpas ocultas. Farhadi antes de su consagración mundial.',
-    poster: 'https://image.tmdb.org/t/p/w500/ctLrMQrg3kss2JO7OIr7RVdN5an.jpg', imdb: 7.5, duracion: 119,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Vals con Bashir',
-    titulo_original: 'Waltz with Bashir',
-    director: 'Ari Folman',
-    ano: 2008, decada: '2000s', pais: 'Israel', genero: 'Animación',
-    actores: ['Ari Folman', 'Mickey Leon', 'Ori Sivan', 'Yehezkel Lazarov'],
-    sinopsis: 'El director Ari Folman no recuerda nada de su participación en la guerra del Líbano de 1982. Entrevistando a compañeros sobrevivientes, intenta reconstruir su memoria. Un documental animado sobre el trauma, la guerra y la responsabilidad colectiva.',
-    poster: 'https://image.tmdb.org/t/p/w500/zQaCv7lKwHsh0YSHkt1QNjIOZ1c.jpg', imdb: 7.7, duracion: 87,
-    tipo: 'pelicula', formato: 'animacion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'Tres colores: Azul',
     titulo_original: 'Trois couleurs: Bleu',
     director: 'Krzysztof Kieślowski',
@@ -3038,16 +2259,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1mr-w_yLujzTvuslUA1--OiiFGHX0mE9F', notas_alejandro: ''
   },
 {
-    titulo: 'La doble vida de Verónica',
-    titulo_original: 'La Double Vie de Véronique',
-    director: 'Krzysztof Kieślowski',
-    ano: 1991, decada: '1990s', pais: 'Francia', genero: 'Drama',
-    actores: ['Irène Jacob', 'Halina Gryglaszewska', 'Philippe Volter', 'Guillaume de Tonquédec'],
-    sinopsis: 'Dos mujeres idénticas, una en Polonia y otra en Francia, sienten una misteriosa conexión sin saberlo. Cuando una muere, la otra comienza a intuir algo que no puede nombrar. Kieślowski en su película más etérea y más perfectamente hermosa.',
-    poster: 'https://image.tmdb.org/t/p/w500/oqRyO9xrNBRaxqF9pCHHgLuaATx.jpg', imdb: 7.5, duracion: 98,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'El portero de noche',
     titulo_original: 'Il portiere di notte',
     director: 'Liliana Cavani',
@@ -3055,7 +2266,7 @@ const PELICULAS = [
     actores: ['Dirk Bogarde', 'Charlotte Rampling', 'Philippe Leroy', 'Gabriele Ferzetti'],
     sinopsis: 'Viena, 1957. Una mujer reconoce en el portero de su hotel al oficial nazi que la sedujo en el campo de concentración. La relación se reanuda. Cavani explora la psicología de la dominación y la dependencia con una frialdad que todavía divide.',
     poster: 'https://image.tmdb.org/t/p/w500/zTUYhMdh2Jwk5s9jbrU4mCH3CY4.jpg', imdb: 6.7, duracion: 118,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
+    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1ZCm5Y2OS6C_uYdme04By33kz3UwH8c1h', notas_alejandro: ''
   },
 {
     titulo: 'Sospechosos habituales',
@@ -3068,56 +2279,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/17DFq0fE3zb33v7BIvM3I783H7BsPucPs', notas_alejandro: ''
   },
 {
-    titulo: 'Elephant',
-    titulo_original: '',
-    director: 'Gus Van Sant',
-    ano: 2003, decada: '2000s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Alex Frost', 'Eric Deulen', 'John Robinson', 'Elias McConnell'],
-    sinopsis: 'Un día ordinario en una escuela secundaria de Portland. Van Sant sigue a distintos estudiantes en tiempo real hasta que dos de ellos entran armados al edificio. Un retrato de la violencia escolar sin explicaciones ni moralejas.',
-    poster: 'https://image.tmdb.org/t/p/w500/1a4VU9z2hxEvugHMK7VsobB9xTX.jpg', imdb: 7.0, duracion: 81,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El ladrón de orquídeas',
-    titulo_original: 'Adaptation.',
-    director: 'Spike Jonze',
-    ano: 2002, decada: '2000s', pais: 'EE.UU.', genero: 'Comedia',
-    actores: ['Nicolas Cage', 'Meryl Streep', 'Chris Cooper', 'Tilda Swinton'],
-    sinopsis: 'El guionista Charlie Kaufman lucha por adaptar un libro sobre orquídeas mientras su hermano gemelo escribe su primera comedia de acción sin esfuerzo. Una película que es al mismo tiempo sobre la escritura, la creatividad y la imposibilidad de la adaptación perfecta.',
-    poster: 'https://image.tmdb.org/t/p/w500/ffEmHQAiD0m5dEQ6rlsuA9vlllW.jpg', imdb: 7.3, duracion: 116,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Synecdoche, Nueva York',
-    titulo_original: 'Synecdoche, New York',
-    director: 'Charlie Kaufman',
-    ano: 2008, decada: '2000s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Philip Seymour Hoffman', 'Samantha Morton', 'Michelle Williams', 'Catherine Keener'],
-    sinopsis: 'Un director de teatro con enfermedades imaginarias construye en un almacén una réplica de Nueva York para montar la obra más honesta posible. La vida se cuela en la obra y la obra en la vida hasta que no hay diferencia. Kaufman en su obra cumbre.',
-    poster: 'https://image.tmdb.org/t/p/w500/5UwdhrjXhUgsiDhe1dpS9z4yj7q.jpg', imdb: 7.5, duracion: 124,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Lost in Translation',
-    titulo_original: '',
-    director: 'Sofia Coppola',
-    ano: 2003, decada: '2000s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Bill Murray', 'Scarlett Johansson', 'Giovanni Ribisi', 'Anna Faris'],
-    sinopsis: 'Un actor americano de mediana edad y una recién casada joven coinciden en el mismo hotel de Tokio y desarrollan una amistad íntima en el desfase horario y la desorientación. Sofia Coppola captura algo que los adultos sienten pero raramente se dicen.',
-    poster: 'https://image.tmdb.org/t/p/w500/3MnkwPdDEbouZJAkKRqVt7vnjHQ.jpg', imdb: 7.4, duracion: 104,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1hHPIQsAHyLKHhW6shDAsnClGkfHq9SEW', notas_alejandro: ''
-  },
-{
-    titulo: 'Her',
-    titulo_original: '',
-    director: 'Spike Jonze',
-    ano: 2013, decada: '2010s', pais: 'EE.UU.', genero: 'Ciencia Ficción',
-    actores: ['Joaquin Phoenix', 'Scarlett Johansson', 'Rooney Mara', 'Amy Adams'],
-    sinopsis: 'Theodore, un escritor solitario en un futuro cercano, se enamora de Samantha, el sistema operativo de inteligencia artificial de su computadora. Jonze explora el amor, la conexión y lo que significa ser humano con una ternura que descoloca.',
-    poster: 'https://image.tmdb.org/t/p/w500/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg', imdb: 7.8, duracion: 126,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'Todo sobre mi madre',
     titulo_original: 'Todo sobre mi madre',
     director: 'Pedro Almodóvar',
@@ -3128,66 +2289,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1m-leAtF4yo-sNKwx4x0efQpx_RmApIqa', notas_alejandro: ''
   },
 {
-    titulo: 'Hable con ella',
-    titulo_original: 'Hable con ella',
-    director: 'Pedro Almodóvar',
-    ano: 2002, decada: '2000s', pais: 'España', genero: 'Drama',
-    actores: ['Javier Cámara', 'Darío Grandinetti', 'Leonor Watling', 'Rosario Flores'],
-    sinopsis: 'Dos hombres cuidan a dos mujeres en coma en la misma clínica: un enfermero obsesivo y un periodista apasionado. Una historia de amor narrada desde la imposibilidad de la respuesta, con una estructura que Almodóvar maneja como un maestro.',
-    poster: 'https://image.tmdb.org/t/p/w500/fWDbQlOWOqjR5jZm98KjGyYmUOw.jpg', imdb: 7.6, duracion: 112,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Ran',
-    titulo_original: '乱',
-    director: 'Akira Kurosawa',
-    ano: 1985, decada: '1980s', pais: 'Japón', genero: 'Bélico',
-    actores: ['Tatsuya Nakadai', 'Akira Terao', 'Jinpachi Nezu', 'Daisuke Ryu'],
-    sinopsis: 'Un poderoso señor feudal japonés divide su reino entre sus tres hijos, desencadenando una guerra fraticida. Kurosawa adapta El rey Lear de Shakespeare con una escala visual y cromática sin igual. Su testamento épico del poder y la locura.',
-    poster: 'https://image.tmdb.org/t/p/w500/dGgiXMWDcS5aJTBEFu7bmaQPNox.jpg', imdb: 8.0, duracion: 162,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Harakiri',
-    titulo_original: '切腹',
-    director: 'Masaki Kobayashi',
-    ano: 1962, decada: '1960s', pais: 'Japón', genero: 'Drama',
-    actores: ['Tatsuya Nakadai', 'Akira Ishihama', 'Shima Iwashita', 'Tetsuro Tanba'],
-    sinopsis: 'Un samurái sin señor llega a la casa de un clan pidiendo permiso para hacerse el harakiri en su patio. Lo que parece una petición rutinaria oculta una historia de injusticia y venganza. Kobayashi desmonta el código bushido con una precisión devastadora.',
-    poster: 'https://image.tmdb.org/t/p/w500/zK7HsOC7QxW1ldKIeFG8YJ5F2Eb.jpg', imdb: 8.5, duracion: 133,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Underground',
-    titulo_original: 'Podzemlje',
-    director: 'Emir Kusturica',
-    ano: 1995, decada: '1990s', pais: 'Yugoslavia', genero: 'Comedia',
-    actores: ['Miki Manojlović', 'Lazar Ristovski', 'Mirjana Joković', 'Slavko Štimac'],
-    sinopsis: 'Dos amigos en Belgrado durante la Segunda Guerra Mundial. Uno esconde al otro y a su familia en un sótano, mientras arriba el mundo sigue su curso durante décadas. Kusturica construye una fábula desmesurada sobre Yugoslavia, la historia y la traición.',
-    poster: 'https://image.tmdb.org/t/p/w500/h8N6y13t4VusrDdH5PzTkwvBvgN.jpg', imdb: 7.7, duracion: 167,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El piano',
-    titulo_original: 'The Piano',
-    director: 'Jane Campion',
-    ano: 1993, decada: '1990s', pais: 'Nueva Zelanda', genero: 'Drama',
-    actores: ['Holly Hunter', 'Harvey Keitel', 'Sam Neill', 'Anna Paquin'],
-    sinopsis: 'Ada, una mujer muda, llega a Nueva Zelanda en un matrimonio concertado. Cuando su piano —su única voz— queda en la playa, lo intercambia con el colono que lo compró a cambio de lecciones. Una historia de deseo y voluntad en una naturaleza implacable.',
-    poster: 'https://image.tmdb.org/t/p/w500/rx8RKXn8OtuS6lqloYsjyrGOUp4.jpg', imdb: 7.4, duracion: 121,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Cleo de 5 a 7',
-    titulo_original: 'Cléo de 5 à 7',
-    director: 'Agnès Varda',
-    ano: 1962, decada: '1960s', pais: 'Francia', genero: 'Drama',
-    actores: ['Corinne Marchand', 'Antoine Bourseiller', 'Dominique Davray', 'Dorothée Blanck'],
-    sinopsis: 'Cleo, una cantante pop, espera durante dos horas los resultados de un análisis médico que podrían confirmar un cáncer. Varda la sigue en tiempo real por las calles de París. Una de las primeras películas feministas de la historia: la mirada al fin devuelta.',
-    poster: 'https://image.tmdb.org/t/p/w500/oelBStY4xpguaplRv15P3Za7Xsr.jpg', imdb: 7.7, duracion: 90,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
     titulo: 'Alguien voló sobre el nido del cuco',
     titulo_original: "One Flew Over the Cuckoo's Nest",
     director: 'Miloš Forman',
@@ -3195,37 +2296,7 @@ const PELICULAS = [
     actores: ['Jack Nicholson', 'Brad Dourif', 'Louise Fletcher', 'Danny DeVito'],
     sinopsis: 'McMurphy, un convicto de espíritu libre, simula locura para terminar su condena en un hospital psiquiátrico. Allí se enfrenta a la enfermera Ratched, encarnación del control institucional. Una de las películas más poderosas sobre la libertad individual.',
     poster: 'https://image.tmdb.org/t/p/w500/kjWsMh72V6d8KRLV4EOoSJLT1H7.jpg', imdb: 8.4, duracion: 133,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Amadeus',
-    titulo_original: '',
-    director: 'Miloš Forman',
-    ano: 1984, decada: '1980s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['F. Murray Abraham', 'Tom Hulce', 'Elizabeth Berridge', 'Simon Callow'],
-    sinopsis: 'El compositor Antonio Salieri narra con amargura y fascinación su relación con Mozart, el genio vulgar y divino que Dios eligió sobre él. Forman hace de la envidia una meditación sobre el talento, Dios y la mediocridad consciente de sí misma.',
-    poster: 'https://image.tmdb.org/t/p/w500/gQRfiyfGvr1az0quaYyMram3Aqt.jpg', imdb: 8.0, duracion: 160,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Manhattan',
-    titulo_original: '',
-    director: 'Woody Allen',
-    ano: 1979, decada: '1970s', pais: 'EE.UU.', genero: 'Comedia',
-    actores: ['Woody Allen', 'Diane Keaton', 'Michael Murphy', 'Mariel Hemingway'],
-    sinopsis: 'Cuatro personajes en Nueva York navegan el romance, la infidelidad y la neurosis en blanco y negro. Allen captura la ciudad como personaje: sofisticada, frívola y profundamente sola.',
-    poster: 'https://image.tmdb.org/t/p/w500/noxGSZFvXGrL2tscOWu5q2OO7P2.jpg', imdb: 7.9, metacritic: 93, duracion: 96,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'El tercer hombre',
-    titulo_original: 'The Third Man',
-    director: 'Carol Reed',
-    ano: 1949, decada: '1940s', pais: 'Reino Unido', genero: 'Thriller',
-    actores: ['Joseph Cotten', 'Alida Valli', 'Orson Welles', 'Trevor Howard'],
-    sinopsis: 'En la Viena ocupada de posguerra, un escritor americano busca respuestas sobre la muerte de su amigo. Un misterio que desciende hacia la corrupción, el tráfico de penicilina y la traición en las catacumbas de la ciudad.',
-    poster: 'https://image.tmdb.org/t/p/w500/4BG0rXzIbS4qWt5l5C3wTXvkqN4.jpg', imdb: 8.1, metacritic: 88, duracion: 104,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
+    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1SUxmTNKmWuz2ewxmwJCc7yoK5699CNGf', notas_alejandro: ''
   },
 {
     titulo: 'Citizen Kane',
@@ -3236,26 +2307,6 @@ const PELICULAS = [
     sinopsis: 'La vida y caída del magnate Charles Foster Kane, contada en flashbacks. La película que revolucionó el cine: profundidad de campo, narración fragmentada, y una pregunta imposible: ¿quién era realmente Kane?',
     poster: 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', imdb: 8.3, metacritic: 100, duracion: 119,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1rx_2N29EZMN6DOVWRt6uEmLz3uUkWWYj', notas_alejandro: ''
-  },
-{
-    titulo: 'Casablanca',
-    titulo_original: '',
-    director: 'Michael Curtiz',
-    ano: 1942, decada: '1940s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Humphrey Bogart', 'Ingrid Bergman', 'Paul Henreid', 'Peter Lorre'],
-    sinopsis: 'En Casablanca durante la Segunda Guerra Mundial, un expatriado americano se reencuentra con el amor de su vida en su bar. Sacrificio, patriotismo y nostalgia en la película de Hollywood más romántica jamás hecha.',
-    poster: 'https://image.tmdb.org/t/p/w500/qrcOWy5hwC4EzAVaiIR7A8EXQIF.jpg', imdb: 8.5, metacritic: 100, duracion: 102,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
-  },
-{
-    titulo: 'Cantando bajo la lluvia',
-    titulo_original: 'Singin\' in the Rain',
-    director: 'Gene Kelly, Stanley Donen',
-    ano: 1952, decada: '1950s', pais: 'EE.UU.', genero: 'Comedia',
-    actores: ['Gene Kelly', 'Donald O\'Connor', 'Debbie Reynolds', 'Jean Hagen'],
-    sinopsis: 'Un estrella de cine de la era muda se adapta a la llegada del sonido. Con Gene Kelly ejecutando los números de baile más brillantes jamás filmados, es pura alegría cinematográfica.',
-    poster: 'https://image.tmdb.org/t/p/w500/xq3G0jmdJaXB0Z6yHpFzpJShbFj.jpg', imdb: 7.8, metacritic: 92, duracion: 103,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
   },
 {
     titulo: 'Vidas cruzadas',
@@ -3276,16 +2327,6 @@ const PELICULAS = [
     sinopsis: 'Cuatro personas atrapadas en ciclos de adicción: droga, dietas, televisión. Una pesadilla visual y sonora sobre la degradación, la soledad y el colapso de los sueños en la América contemporánea.',
     poster: 'https://image.tmdb.org/t/p/w500/6gkkhfn8hfJvqBjZCM6bVUBYuDl.jpg', imdb: 8.4, metacritic: 64, duracion: 102,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1f4_EZIfRwg0TqEYaman8FoCCoTZFzIHW', notas_alejandro: ''
-  },
-{
-    titulo: 'Atrápame si puedes',
-    titulo_original: 'Catch Me If You Can',
-    director: 'Steven Spielberg',
-    ano: 2002, decada: '2000s', pais: 'EE.UU.', genero: 'Thriller',
-    actores: ['Leonardo DiCaprio', 'Tom Hanks', 'Christopher Walken', 'Martin Sheen'],
-    sinopsis: 'La verdadera historia de Frank Abagnale Jr., estafador de cheques que engañó a bancos en la década del sesenta. Un juego de gato y ratón entre el delincuente carismático y el agente del FBI que lo persigue.',
-    poster: 'https://image.tmdb.org/t/p/w500/2YmP06M0LVP3AkSjvLOhNXMfCvV.jpg', imdb: 8.0, metacritic: 76, duracion: 141,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
   },
 {
     titulo: 'Rashomón',
@@ -3518,26 +2559,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Elysium',
-    titulo_original: 'Elysium',
-    director: 'Neill Blomkamp',
-    ano: 2013,
-    decada: '2010s',
-    pais: 'Estados Unidos',
-    genero: 'Ciencia ficción',
-    actores: ['Matt Damon', 'Jodie Foster'],
-    sinopsis: 'En 2159, la humanidad se divide entre los ricos en la estación espacial Elysium y los pobres en la Tierra devastada.',
-    poster: 'https://image.tmdb.org/t/p/w500/aRjuJuPXHtVs6YegfeeQWXGRs1E.jpg',
-    imdb: 6.6,
-    metacritic: 51,
-    duracion: 109,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/18Qs_hFflEMX-sAH6P2u2whZEVXQZ57bC',
-    notas_alejandro: ''
-  },
-{
     titulo: 'Calígula',
     titulo_original: 'Caligola',
     director: 'Tinto Brass',
@@ -3575,26 +2596,6 @@ const PELICULAS = [
     formato: 'ficcion',
     disponible: 'si',
     drive_link: 'https://drive.google.com/drive/folders/1lHqsUc-IZI53GXw02gQ6Hq277IGb6A5-',
-    notas_alejandro: ''
-  },
-{
-    titulo: 'Manchester frente al mar',
-    titulo_original: 'Manchester by the Sea',
-    director: 'Kenneth Lonergan',
-    ano: 2016,
-    decada: '2010s',
-    pais: 'Estados Unidos',
-    genero: 'Drama',
-    actores: ['Casey Affleck', 'Lucas Hedges'],
-    sinopsis: 'Un fontanero regresa a su pueblo natal tras la muerte de su hermano y debe cuidar a su sobrino adolescente, enfrentando un pasado trágico.',
-    poster: 'https://image.tmdb.org/t/p/w500/A3yR6Mdz48elRI1pBOzbIbDyCRi.jpg',
-    imdb: 7.8,
-    metacritic: 96,
-    duracion: 137,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1pMpRPQeF1ltLUi_FNljpUkj0rqHJ-1eS',
     notas_alejandro: ''
   },
 {
@@ -3714,7 +2715,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1g77o9Os2EZG-M6nrUFnkBfor3lutU1Eb',
     notas_alejandro: ''
   },
 {
@@ -3734,27 +2735,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
-    notas_alejandro: ''
-  },
-{
-    titulo: 'Oslo, 31 de agosto',
-    titulo_original: 'Oslo, 31. august',
-    director: 'Joachim Trier',
-    ano: 2011,
-    decada: '2010s',
-    pais: 'Noruega',
-    genero: 'Drama',
-    actores: ['Anders Danielsen Lie', 'Hans Olav Brenner'],
-    sinopsis: 'Anders sale de un centro de desintoxicación para una entrevista laboral en Oslo y recorre la ciudad reencontrándose con personas del pasado.',
-    poster: 'https://image.tmdb.org/t/p/w500/wyPW2SGpkWYAfMVPotvLeUUNmvY.jpg',
-    imdb: 7.6,
-    metacritic: 0,
-    duracion: 95,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1gqCUAcoeOLrXhPSU8H3HxP_dK3vtfDmw',
+    drive_link: 'https://drive.google.com/drive/folders/1KJ8C0lJxreuArtr-1ROdRmwk5azZj_ra',
     notas_alejandro: ''
   },
 {
@@ -3794,7 +2775,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1Zg8g6dG3IC3kh_xuEuQP2LMvBqkKRx9R',
     notas_alejandro: ''
   },
 {
@@ -4174,7 +3155,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1WnRnSu27S8Xerv1CmB6FOZmPtK19gzLy',
     notas_alejandro: ''
   },
 {
@@ -4238,26 +3219,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Whiplash',
-    titulo_original: 'Whiplash',
-    director: 'Damien Chazelle',
-    ano: 2014,
-    decada: '2010s',
-    pais: 'Estados Unidos',
-    genero: 'Drama',
-    actores: ['Miles Teller', 'J.K. Simmons'],
-    sinopsis: 'Un joven baterista de jazz ambiciona triunfar en un conservatorio de élite bajo un profesor de métodos rigurosos que lo lleva al límite.',
-    poster: 'https://image.tmdb.org/t/p/w500/uy36CPy5ARuC8qrH8Esg2ndFyJ5.jpg',
-    imdb: 8.5,
-    metacritic: 88,
-    duracion: 105,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/191_QHTVmHonDNvvUdREHpoDeF9yHwog3',
-    notas_alejandro: ''
-  },
-{
     titulo: 'El paciente inglés',
     titulo_original: 'The English Patient',
     director: 'Anthony Minghella',
@@ -4276,16 +3237,6 @@ const PELICULAS = [
     disponible: 'si',
     drive_link: 'https://drive.google.com/drive/folders/1NPOjzguNw4sRG4_KCG1LIeQgb9fR9vzZ',
     notas_alejandro: ''
-  },
-{
-    titulo: 'Hamnet',
-    titulo_original: 'Hamnet',
-    director: 'Chloé Zhao',
-    ano: 2025, decada: '2020s', pais: 'Reino Unido / EE.UU.', genero: 'Drama',
-    actores: ['Jessie Buckley', 'Paul Mescal', 'Emily Watson'],
-    sinopsis: 'La historia de Agnes, esposa de William Shakespeare, y de la tragedia familiar que irrumpe en su vida mientras su marido escribe la obra que llevará el nombre de su hijo muerto. Zhao convierte el duelo en la raíz secreta del arte.',
-    poster: 'https://image.tmdb.org/t/p/w500/qXF968t2LfHZJ8Zrq2NgMGNomnE.jpg', imdb: 7.8, metacritic: 82, duracion: 126,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1DDNuGClGBgmr08vdvGk33aGDa6HepI6S', notas_alejandro: ''
   },
 {
     titulo: 'La balada de Narayama',
@@ -4388,16 +3339,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1mp0TJ7bhZz5z750TW8uIODiA30wUmwB1', notas_alejandro: ''
   },
 {
-    titulo: '¿En qué piensan las mujeres?',
-    titulo_original: 'What Women Want',
-    director: 'Nancy Meyers',
-    ano: 2000, decada: '2000s', pais: 'EE.UU.', genero: 'Comedia',
-    actores: ['Mel Gibson', 'Helen Hunt', 'Marisa Tomei'],
-    sinopsis: 'Un publicista arrogante y machista sufre un accidente doméstico que le otorga la capacidad de escuchar los pensamientos de las mujeres a su alrededor. Comedia romántica noventera con Mel Gibson forzado, a su pesar, a aprender a escuchar.',
-    poster: 'https://image.tmdb.org/t/p/w500/l0KNP8jaWYfiYY2wfUQTptVS4nN.jpg', imdb: 6.4, metacritic: 45, duracion: 126,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1TcPHLhxiLPIo2DIczSWjA8B9VMgqrLJW', notas_alejandro: ''
-  },
-{
     titulo: 'Nadie está a salvo de Sam',
     titulo_original: 'Summer of Sam',
     director: 'Spike Lee',
@@ -4455,7 +3396,7 @@ const PELICULAS = [
     actores: ['Zain Al Rafeea', 'Yordanos Shifera', 'Boluwatife Treasure Bankole'],
     sinopsis: 'Un niño de doce años demanda a sus propios padres por haberlo traído al mundo sin poder cuidarlo, en un Beirut de miseria extrema donde sobrevive gracias a su astucia callejera. Labaki filma con actores no profesionales una tragedia devastadora sobre la infancia negada.',
     poster: 'https://image.tmdb.org/t/p/w500/9eTR8jfNbdMhEQhtuTVVC8oY2fp.jpg', imdb: 8.4, metacritic: 75, duracion: 120,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
+    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1B3EV-T-SkzSJkF2Xbv8pJZpzRf2HITAn', notas_alejandro: ''
   },
 {
     titulo: 'Del revés 2',
@@ -4528,16 +3469,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1sb2fPteOs1ehR5Jt44fRg_G_7lyX0wpw', notas_alejandro: ''
   },
 {
-    titulo: 'El viento que agita la cebada',
-    titulo_original: 'The Wind That Shakes the Barley',
-    director: 'Ken Loach',
-    ano: 2006, decada: '2000s', pais: 'Irlanda / Reino Unido', genero: 'Drama',
-    actores: ['Cillian Murphy', 'Pádraic Delaney', 'Liam Cunningham'],
-    sinopsis: 'Irlanda, 1920: dos hermanos se alistan en la guerrilla para combatir a las tropas británicas y terminan enfrentados entre sí cuando la guerra de independencia deriva en guerra civil. Loach en su registro más político y doloroso, Palma de Oro en Cannes.',
-    poster: 'https://image.tmdb.org/t/p/w500/1DktK3noMCRiR7MaxOC3Ja6u3kL.jpg', imdb: 7.5, metacritic: 71, duracion: 127,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1Jg3KZ_-QJ4pvJMttppUF7kjHKngRvvgI', notas_alejandro: ''
-  },
-{
     titulo: 'Revolutionary Road',
     titulo_original: 'Revolutionary Road',
     director: 'Sam Mendes',
@@ -4546,16 +3477,6 @@ const PELICULAS = [
     sinopsis: 'Un matrimonio suburbano de los años cincuenta, atrapado en la promesa incumplida de una vida distinta, se aferra a un plan de escape a París que termina revelando el abismo real entre sus deseos. Winslet y DiCaprio reunidos tras el Titanic, en las antípodas de aquel romance.',
     poster: 'https://image.tmdb.org/t/p/w500/ccUJy71VwfcO20mBeEPvm62bx1P.jpg', imdb: 7.3, metacritic: 69, duracion: 119,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1o2YL4lA8P_oZKoYsXQBUQskvkXt1JAuv', notas_alejandro: ''
-  },
-{
-    titulo: 'Dos mujeres',
-    titulo_original: 'La ciociara',
-    director: 'Vittorio De Sica',
-    ano: 1960, decada: '1960s', pais: 'Italia / Francia', genero: 'Drama',
-    actores: ['Sophia Loren', 'Eleonora Brown', 'Jean-Paul Belmondo'],
-    sinopsis: 'Italia, 1943, bajo la ocupación alemana: una viuda huye de Roma con su hija adolescente para refugiarse en su pueblo natal, pero el camino las expone a los horrores más brutales de la guerra. Sophia Loren, ganadora del Oscar, en uno de los papeles más desgarradores del neorrealismo tardío.',
-    poster: 'https://image.tmdb.org/t/p/w500/myb1WSmhszRR3EH6yhP2NQU3niF.jpg', imdb: 7.9, metacritic: 80, duracion: 100,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
   },
 {
     titulo: 'El nombre de la rosa',
@@ -4608,16 +3529,6 @@ const PELICULAS = [
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1bwIlE3Q1rOHhqPGYryP2xVEoDJQglCJM', notas_alejandro: ''
   },
 {
-    titulo: 'Sonrisas y lágrimas',
-    titulo_original: 'The Sound of Music',
-    director: 'Robert Wise',
-    ano: 1965, decada: '1960s', pais: 'EE.UU.', genero: 'Musical',
-    actores: ['Julie Andrews', 'Christopher Plummer', 'Eleanor Parker'],
-    sinopsis: 'Austria, 1938: una novicia alegre y rebelde abandona la abadía para convertirse en institutriz de los siete hijos de un capitán viudo, y termina transformando a toda la familia con su música justo cuando el nazismo se cierne sobre el país. El musical más querido de Hollywood.',
-    poster: 'https://image.tmdb.org/t/p/w500/3mYxH1mwSmNoyZF4xvDvcEpH18F.jpg', imdb: 8.0, metacritic: 63, duracion: 174,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/139v_xTcaPvjvsrcjq2fO3PIiTXTG-ZCr', notas_alejandro: ''
-  },
-{
     titulo: 'La delgada línea roja',
     titulo_original: 'The Thin Red Line',
     director: 'Terrence Malick',
@@ -4635,7 +3546,7 @@ const PELICULAS = [
     actores: ['Mads Mikkelsen', 'Amanda Collin', 'Simon Bennebjerg'],
     sinopsis: 'En 1755, un capitán empobrecido y sin apellido intenta cultivar los páramos daneses considerados inhabitables para fundar una colonia en nombre del rey, enfrentándose al terrateniente local que reclama esas tierras como propias. Mikkelsen en un western nórdico de resistencia y venganza.',
     poster: 'https://image.tmdb.org/t/p/w500/nEpXUsaUOzReUV2SWOWQuTFY5G4.jpg', imdb: 7.6, metacritic: 76, duracion: 127,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: '#', notas_alejandro: ''
+    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1J4uC0e9CDmIJg7QnC4NhJuebJg3iuOM2', notas_alejandro: ''
   },
 {
     titulo: 'The Master',
@@ -4666,16 +3577,6 @@ const PELICULAS = [
     sinopsis: 'Un cineasta de comedias célebre y agotado de hacer reír asiste a un festival dedicado a su obra, donde su vida amorosa fragmentada se mezcla con recuerdos y fantasías en blanco y negro. Allen homenajea a Fellini en su film más introspectivo y menos complaciente.',
     poster: 'https://image.tmdb.org/t/p/w500/9CavoUa5MjeipEeKwLkwP9GYvd6.jpg', imdb: 7.6, metacritic: 68, duracion: 89,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1TjSDA8vVwqGY4zrDSagjh0hWfDpnZ1TD', notas_alejandro: ''
-  },
-{
-    titulo: 'El espantapájaros',
-    titulo_original: 'Scarecrow',
-    director: 'Jerry Schatzberg',
-    ano: 1973, decada: '1970s', pais: 'EE.UU.', genero: 'Drama',
-    actores: ['Gene Hackman', 'Al Pacino', 'Dorothy Tristan'],
-    sinopsis: 'Un ex presidiario duro y camorrista se topa en la carretera con un vagabundo soñador que quiere abrir una lavandería, y ambos emprenden juntos un viaje errante por Estados Unidos. Hackman y Pacino en un dúo de vagabundos entrañables, ganadora de la Palma de Oro.',
-    poster: 'https://image.tmdb.org/t/p/w500/fM8BDbWtvdhqNdUqwMKOtCThorE.jpg', imdb: 7.2, metacritic: 68, duracion: 104,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1Twxhdkh1AXmL2QqbfGkI3bhekZF5rGzN', notas_alejandro: ''
   },
 {
     titulo: 'Rocketman',
@@ -4756,26 +3657,6 @@ const PELICULAS = [
     sinopsis: 'En la América de los años treinta, un guitarrista de jazz genial pero egocéntrico e insoportable vive obsesionado con la idea de ser el segundo mejor guitarrista del mundo, después de Django Reinhardt. Allen construye un falso documental sobre un músico ficticio con la textura de una leyenda real.',
     poster: 'https://image.tmdb.org/t/p/w500/6pbceGly6L3R8WZy4cjYxy2AUuo.jpg', imdb: 7.3, metacritic: 76, duracion: 95,
     tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1_xCs0Xt9tIqvQwzHCbcV2co3mH5-tZ60', notas_alejandro: ''
-  },
-{
-    titulo: 'Confesiones de una mente peligrosa',
-    titulo_original: 'Confessions of a Dangerous Mind',
-    director: 'George Clooney',
-    ano: 2002, decada: '2000s', pais: 'Alemania / Reino Unido / EE.UU.', genero: 'Drama',
-    actores: ['Sam Rockwell', 'Drew Barrymore', 'George Clooney'],
-    sinopsis: 'Chuck Barris, creador y presentador del programa "The Gong Show", asegura en su autobiografía haber llevado una doble vida como asesino a sueldo de la CIA. Clooney debuta en la dirección con un biopic imposible de verificar, tan absurdo como fascinante.',
-    poster: 'https://image.tmdb.org/t/p/w500/aYw84Loq93ocFxSy7UU5WQbTGsr.jpg', imdb: 7.1, metacritic: 66, duracion: 113,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1IAdgcbFsMEM2XqjBWNlivjmr0jiLMS86', notas_alejandro: ''
-  },
-{
-    titulo: 'Kansas City',
-    titulo_original: 'Kansas City',
-    director: 'Robert Altman',
-    ano: 1996, decada: '1990s', pais: 'EE.UU. / Francia', genero: 'Drama',
-    actores: ['Jennifer Jason Leigh', 'Miranda Richardson', 'Harry Belafonte'],
-    sinopsis: 'En el Kansas City de 1934, dominado por la mafia, la corrupción política y una escena de jazz vibrante, una mujer secuestra a la esposa de un senador para forzar la liberación de su marido, retenido por un capo local. Altman entrelaza el thriller con una banda sonora de jazz en vivo grabada en el momento.',
-    poster: 'https://image.tmdb.org/t/p/w500/aKRuoC6MS26YPTIPXZLlCpPogce.jpg', imdb: 6.0, metacritic: 62, duracion: 115,
-    tipo: 'pelicula', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1oCdgb3xpbEjAz_uQK0ojTKcusDJ9wZMj', notas_alejandro: ''
   },
 {
     titulo: 'Nomadland',
@@ -4898,26 +3779,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Malèna',
-    titulo_original: 'Malèna',
-    director: 'Giuseppe Tornatore',
-    ano: 2000,
-    decada: '2000s',
-    pais: 'Italia, Estados Unidos',
-    genero: 'Drama',
-    actores: ['Monica Bellucci', 'Giuseppe Sulfaro', 'Luciano Federico'],
-    sinopsis: 'Malena es la belleza más encantadora e irresistible de Castelcuto, un pueblo de la soleada costa siciliana. Su presencia despierta la envidia y el deseo de todo el pueblo durante la Segunda Guerra Mundial.',
-    poster: 'https://image.tmdb.org/t/p/w500/p1DmuHTnvhsWFvWX0xnMWrLBVZ5.jpg',
-    imdb: 7.0,
-    metacritic: 47,
-    duracion: 109,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1ltVyW6ezuK3nGEgw9OqZ2iLVC30DPpS5',
-    notas_alejandro: ''
-  },
-{
     titulo: 'Magnolia',
     titulo_original: 'Magnolia',
     director: 'Paul Thomas Anderson',
@@ -5014,7 +3875,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1yM5UoodDslOzVF0nFfXuesqVm8ndPISw',
     notas_alejandro: ''
   },
 {
@@ -5035,26 +3896,6 @@ const PELICULAS = [
     formato: 'ficcion',
     disponible: 'si',
     drive_link: 'https://drive.google.com/drive/folders/15-nGLTmhCzNZVvqeJ6O1T0EPLK3lLnKC',
-    notas_alejandro: ''
-  },
-{
-    titulo: '¡Qué bello es vivir!',
-    titulo_original: 'It\'s a Wonderful Life',
-    director: 'Frank Capra',
-    ano: 1946,
-    decada: '1940s',
-    pais: 'Estados Unidos',
-    genero: 'Drama',
-    actores: ['James Stewart', 'Donna Reed', 'Lionel Barrymore'],
-    sinopsis: 'George Bailey es un honrado y modesto ciudadano que dirige y mantiene a flote un pequeño banco familiar, a pesar de los intentos de un poderoso banquero por arruinarlo. La víspera de Navidad, al borde de la desesperación, un ángel le muestra cómo sería el mundo sin él.',
-    poster: 'https://image.tmdb.org/t/p/w500/63W4MsB8e5whhPNyxhRVTzSsCje.jpg',
-    imdb: 8.6,
-    metacritic: 89,
-    duracion: 129,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1Hfm8v0d4LUE8Ya4X0KoFzfYJ7J1jRItN',
     notas_alejandro: ''
   },
 {
@@ -5158,26 +3999,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Fellini, ocho y medio',
-    titulo_original: '8½',
-    director: 'Federico Fellini',
-    ano: 1963,
-    decada: '1960s',
-    pais: 'Italia, Francia',
-    genero: 'Drama',
-    actores: ['Marcello Mastroianni', 'Claudia Cardinale', 'Anouk Aimée'],
-    sinopsis: 'Después de obtener un éxito rotundo, un director de cine atraviesa una crisis de creatividad e intenta inútilmente hacer una nueva película, mientras repasa recuerdos, fantasías y las mujeres de su vida.',
-    poster: 'https://image.tmdb.org/t/p/w500/nCbEu0JLfCIXLnFAxuTs5i5AYN9.jpg',
-    imdb: 8.0,
-    metacritic: 88,
-    duracion: 138,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/12fhh3bHe1firq1b24z4Pbhf23U3ZvX82',
-    notas_alejandro: ''
-  },
-{
     titulo: 'Las hojas muertas',
     titulo_original: 'Kuolleet lehdet',
     director: 'Aki Kaurismäki',
@@ -5194,7 +4015,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1yvJOjJhbqeEUxh-JJZzopQOu3Ty8-0E0',
     notas_alejandro: ''
   },
 {
@@ -5294,7 +4115,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1v1mMAoM4ib3kTyVttf0R_gxty3NEiM6z',
     notas_alejandro: ''
   },
 {
@@ -5434,7 +4255,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1USJsBGohd5Bjz0g00afT9aer8EZy4hOd',
     notas_alejandro: ''
   },
 {
@@ -5575,26 +4396,6 @@ const PELICULAS = [
     formato: 'ficcion',
     disponible: 'si',
     drive_link: 'https://drive.google.com/drive/folders/1NZku9iAdrNVkYh5JxKl43oitX9ts2ihB',
-    notas_alejandro: ''
-  },
-{
-    titulo: 'Hasta que llegó su hora',
-    titulo_original: 'C\'era una volta il West',
-    director: 'Sergio Leone',
-    ano: 1968,
-    decada: '1960s',
-    pais: 'Italia, Estados Unidos',
-    genero: 'Western',
-    actores: ['Claudia Cardinale', 'Henry Fonda', 'Jason Robards'],
-    sinopsis: 'Mientras los constructores del ferrocarril avanzan imparables por el desierto de Arizona, Jill llega al pequeño pueblo de Flagstone con la intención de empezar una nueva vida, cruzándose con un misterioso pistolero y una venganza pendiente.',
-    poster: 'https://image.tmdb.org/t/p/w500/upiek8u4rHTrOJW9B0woXe4A4h7.jpg',
-    imdb: 8.4,
-    metacritic: 90,
-    duracion: 166,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: '#',
     notas_alejandro: ''
   },
 {
@@ -5818,26 +4619,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'La chaqueta metálica',
-    titulo_original: 'Full Metal Jacket',
-    director: 'Stanley Kubrick',
-    ano: 1987,
-    decada: '1980s',
-    pais: 'Estados Unidos, Reino Unido',
-    genero: 'Drama',
-    actores: ['Matthew Modine', 'Adam Baldwin', 'Vincent D\'Onofrio'],
-    sinopsis: 'Un grupo de reclutas se prepara en Parris Island, centro de entrenamiento de la marina norteamericana, bajo las órdenes del implacable sargento Hartmann, antes de ser enviados a la guerra de Vietnam.',
-    poster: 'https://image.tmdb.org/t/p/w500/6CX7BcyD8Xd5AQ7myNs0UE4mu6c.jpg',
-    imdb: 8.1,
-    metacritic: 76,
-    duracion: 120,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1x_VRPLOmVPvdpuwB94t8-VdEw5n96u6J',
-    notas_alejandro: ''
-  },
-{
     titulo: 'V de Vendetta',
     titulo_original: 'V for Vendetta',
     director: 'James McTeigue',
@@ -5934,7 +4715,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/15_AS-9QB7Gp9-HxuEKubfu4U8_bt-K5z',
     notas_alejandro: ''
   },
 {
@@ -5974,7 +4755,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1PF2mrj02zwhKeiy2AKAu533Xqn7ejOqF',
     notas_alejandro: ''
   },
 {
@@ -5994,7 +4775,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1WovYPceZQa2lzAcRwBwmGXZIRdSScc2S',
     notas_alejandro: ''
   },
 {
@@ -6154,7 +4935,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1lAXeAU2LpHgRpu7XzMPGflrZbEAqTGS1',
     notas_alejandro: ''
   },
 {
@@ -6198,26 +4979,6 @@ const PELICULAS = [
     notas_alejandro: ''
   },
 {
-    titulo: 'Skyfall',
-    titulo_original: 'Skyfall',
-    director: 'Sam Mendes',
-    ano: 2012,
-    decada: '2010s',
-    pais: 'Reino Unido, Estados Unidos',
-    genero: 'Acción',
-    actores: ['Daniel Craig', 'Judi Dench', 'Javier Bardem'],
-    sinopsis: 'La lealtad de James Bond hacia M será puesta a prueba cuando el pasado de M vuelve para atormentarla. Su vida se ve en peligro, por lo que 007 deberá localizar y eliminar la amenaza sin importar el precio personal.',
-    poster: 'https://image.tmdb.org/t/p/w500/lz5kTkm3az7Ww0uTLRvCGgudnaa.jpg',
-    imdb: 7.8,
-    metacritic: 81,
-    duracion: 143,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1_ITLBMIwtM2xY3lOEDjouGwt5GsptuQH',
-    notas_alejandro: ''
-  },
-{
     titulo: 'The Imaginarium of Doctor Parnassus',
     titulo_original: 'El imaginario del doctor Parnassus',
     director: 'Terry Gilliam',
@@ -6235,26 +4996,6 @@ const PELICULAS = [
     formato: 'ficcion',
     disponible: 'si',
     drive_link: 'https://drive.google.com/drive/folders/1IKjMAR3CKI6I9oM8CiszyzO8YxLviQ5T',
-    notas_alejandro: ''
-  },
-{
-    titulo: 'Quantum of Solace',
-    titulo_original: 'Quantum of Solace',
-    director: 'Marc Forster',
-    ano: 2008,
-    decada: '2000s',
-    pais: 'Reino Unido, Estados Unidos',
-    genero: 'Aventura',
-    actores: ['Daniel Craig', 'Olga Kurylenko', 'Mathieu Amalric'],
-    sinopsis: 'Traicionado por Vesper, la mujer a la que amaba, 007 se plantea su nueva misión como algo personal. Durante su investigación, Bond y M descubren que la organización que chantajeó a Vesper es mucho más compleja y peligrosa de lo que imaginaban.',
-    poster: 'https://image.tmdb.org/t/p/w500/zXkvsMkHbvFT9FMw7U9df0ZDuhb.jpg',
-    imdb: 6.6,
-    metacritic: 58,
-    duracion: 106,
-    tipo: 'pelicula',
-    formato: 'ficcion',
-    disponible: 'si',
-    drive_link: 'https://drive.google.com/drive/folders/1z_H11ManPbHAhz--QiAXyfYW5hQz7Si6',
     notas_alejandro: ''
   },
 {
@@ -6294,7 +5035,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1r8fONZS7m_2XKgEMp5ka_-k-vqCD-chh',
     notas_alejandro: ''
   },
 {
@@ -6414,7 +5155,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1YeBP1u_YWWrm1wYNn0lKDv7EV8UUJF5b',
     notas_alejandro: ''
   },
 {
@@ -6454,7 +5195,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/11IhVXOEONMKz_bqV-xH1mz5FA177IGSA',
     notas_alejandro: ''
   },
 {
@@ -6734,7 +5475,7 @@ const PELICULAS = [
     tipo: 'pelicula',
     formato: 'ficcion',
     disponible: 'si',
-    drive_link: '#',
+    drive_link: 'https://drive.google.com/drive/folders/1jVc9okaajP_wIcY1iTWjjRk-g5TWttWL',
     notas_alejandro: ''
   },
 {
@@ -7039,6 +5780,17 @@ const PELICULAS = [
     poster: 'https://image.tmdb.org/t/p/w500/iPVrCd0dbGyrc6aJk8wccJ8DrvW.jpg', imdb: 7.6, metacritic: 76, duracion: 60,
     tipo: 'serie', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1KTV14QhbT3E6RRlJQxbc5hqaZ0AUW1Ue',
     notas_alejandro: ''
+  },
+{
+    titulo: 'Special Ops: Lioness',
+    titulo_original: 'Special Ops: Lioness',
+    director: 'Taylor Sheridan',
+    ano: 2023, decada: '2020s', pais: 'EE.UU.', genero: 'Thriller',
+    actores: ['Zoe Saldaña', 'Laysla De Oliveira', 'Dave Annable', 'Jill Wagner'],
+    sinopsis: 'Una oficial de la CIA recluta mujeres, las "Lionesses", para infiltrarse en el círculo íntimo de objetivos terroristas durante la guerra contra el terrorismo. Cada misión encubierta tiene un costo personal y moral para las agentes y para sus familias. 3 temporadas, 24 episodios (2023-2026).',
+    poster: 'https://cdn.kinocheck.com/i/w=325/bv35kdd7wk.jpg', imdb: 7.8, metacritic: 56, duracion: 42,
+    tipo: 'serie', formato: 'ficcion', disponible: 'si', drive_link: 'https://drive.google.com/drive/folders/1vASJsGFvTsYp9djy31jTrvDOpcumLiVE',
+    notas_alejandro: 'Cada temporada está en una carpeta distinta. El botón de Drive abre la temporada 1. Temporada 2: https://drive.google.com/drive/folders/1eL3GDEZjnCDT4eKne44lqbZkiZepppOv Temporada 3: https://drive.google.com/drive/folders/1T0Yl4491nDhV46jRvu_l7MWk52pdtpPC'
   }
 ];
 
@@ -7274,7 +6026,7 @@ function abrirModal(p) {
   // Notas
   const notasEl = document.getElementById('modal-notas');
   if (p.notas_alejandro) {
-    notasEl.innerHTML = `<div class="modal-notas">"${esc(p.notas_alejandro)}"</div>`;
+    notasEl.innerHTML = `<div class="modal-notas">"${esc(p.notas_alejandro).replace(/(https?:\/\/[^\s"<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')}"</div>`;
     notasEl.style.display = '';
   } else { notasEl.style.display = 'none'; }
 
